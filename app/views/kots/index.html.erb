@@ -1,5 +1,8 @@
 <ul>
   <% @kots.each do |kot| %>
     <li><%= kot.addresse %></li>
+    <li><%= link_to "Détails", kot_path(kot) %></li>
   <% end %>
 </ul>
+
+<h2>Tu veux rendre service à la communauté ? <%= link_to "Ajoutes ton kot", new_kot_path %></h2>
