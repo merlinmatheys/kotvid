@@ -1,0 +1,2 @@
+module KotsHelper
+end
