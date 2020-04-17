@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Kot.destroy_all
-
+User.destroy_all

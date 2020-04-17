@@ -1,3 +1,6 @@
+<% if user_signed_in? %>
+
+
 <%= simple_form_for(@kot) do |f| %>
   <%= f.label :addresse %>
   <%= f.text_field :addresse %>
@@ -15,6 +18,13 @@
   </datalist>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
+<% end %>
+
+
+
+<% else %>
+<p>Vous devez être connecté pour ajouter un kot ou modifier un kot existant</p>
+<%= link_to "Se connecter", new_user_session_path, class: "active" %>
 <% end %>
 
 
