@@ -4,7 +4,16 @@
   <%= f.label :prix %>
   <%= f.text_field :prix %>
   <%= f.label :quartier %>
-  <%= f.text_field :quartier %>
+  <%= f.text_field :quartier, list: 'quartiers' %>
+  <datalist id="quartiers">
+    <option value="Biéreau">
+    <option value="Lauzelle">
+    <option value="Hocaille">
+    <option value="Centre">
+    <option value="Bruyères">
+  </datalist>
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
 <% end %>
+
+
