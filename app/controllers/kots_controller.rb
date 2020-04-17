@@ -1,5 +1,5 @@
 class KotsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  # before_action :authenticate_user!, only: [:new, :create]
 
   def index
     if params[:location].present?
@@ -31,11 +31,25 @@ class KotsController < ApplicationController
     redirect_to kots_path
   end
 
+  def edit
+    @kot = Kot.find(params[:id])
+  end
+
+  def update
+    @kot = Kot.update(kot_params)
+    redirect_to kot_path(@kot)
+  end
+
+  def destroy
+    @kot.destroy
+    redirect_to kots_path
+  end
+
 
   private
 
   def kot_params
-    params.require(:kot).permit(:addresse, :prix, :quartier, :agence, :nbchambres, :description, photos: [])
+    params.require(:kot).permit(:addresse, :prix, :quartier, :agence, :nbchambres, :description, :user_id, photos: [])
   end
 
 end
