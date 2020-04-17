@@ -1,6 +1,13 @@
 class KotsController < ApplicationController
   def index
-    @kots = Kot.all
+    @kots = Kot.geocoded
+
+    @markers = @kots.map do |kot|
+      {
+        lat: kot.latitude,
+        lng: kot.longitude
+      }
+    end
   end
 
   def show
