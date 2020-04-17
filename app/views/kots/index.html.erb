@@ -1,3 +1,18 @@
+<%# simple_form_for :search, url: kots_path, method: "GET" do |f| %>
+<%# f.text_field :input_addresse, placeholder: 'Addresse' %>
+<%# f.submit "Search" %>
+<%# end %>
+
+<%= form_tag kots_path, method: :get do %>
+  <%= label :location, "Search classifieds near : " %>
+  <%= text_field_tag :location, params[:location] %>
+
+  <%= label :distance, "Distance : " %>
+  <%= text_field_tag :distance, params[:distance] %>
+
+  <%= submit_tag "Search" %>
+<% end %>
+
 <ul>
   <% @kots.each do |kot| %>
     <li><%= kot.addresse %></li>
