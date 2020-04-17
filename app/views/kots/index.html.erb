@@ -1,28 +1,3 @@
-<%= simple_form_for :search, url: shelters_index_path, method: "GET" do |f| %>
-              <%= f.text_field :animal_type_input, class: 'form-control', placeholder: 'Select animal', list: 'browsers' %>
-              <datalist id="browsers">
-              <option value="Cat">
-              <option value="Dog">
-              <option value="Rabbit">
-              <option value="Hamster">
-              <option value="Horse">
-              <option value="Bird">
-            </datalist>
-          </div>
-          <div class="col">
-            <%= f.text_field :location_input, class: 'form-control', placeholder: 'Select your location' %>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <div class='col-sm-6'>
-            <div class="form-group">
-              <input id='datetimepicker1'type="text" class="form-control" placeholder="Select your date"/>
-            </div>
-              <%= f.submit "Search", class: "btn btn-outline-light" %>
-
-<%= simple_form_for :search, url: kots_path %>
-
 <ul>
   <% @kots.each do |kot| %>
     <li><%= kot.addresse %></li>
