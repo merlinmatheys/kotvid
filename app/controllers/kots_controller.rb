@@ -1,4 +1,6 @@
 class KotsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+
   def index
     if params[:location].present?
       @kots = Kot.near(params[:location], params[:distance] || 10, order: :distance)
