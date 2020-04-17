@@ -1,6 +1,10 @@
 class KotsController < ApplicationController
   def index
-    @kots = Kot.geocoded
+    if params[:location].present?
+      @kots = Kot.near(params[:location], params[:distance] || 10, order: :distance)
+    else
+      @kots = Kot.all
+    end
 
     @markers = @kots.map do |kot|
       {
@@ -22,7 +26,7 @@ class KotsController < ApplicationController
     @kot = Kot.new(kot_params)
     @kot.save
     # Will raise ActiveModel::ForbiddenAttributesError
-    redirect_to kots_path(@kot)
+    redirect_to kots_path
   end
 
 
