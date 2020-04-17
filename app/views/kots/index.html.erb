@@ -1,3 +1,6 @@
+
+
+
 <%# simple_form_for :search, url: kots_path, method: "GET" do |f| %>
 <%# f.text_field :input_addresse, placeholder: 'Addresse' %>
 <%# f.submit "Search" %>
@@ -13,12 +16,21 @@
   <%= submit_tag "Search" %>
 <% end %>
 
-<ul>
+
+<table class="liste_kot">
+	<tr>
+		<td class="tdkot">Quartier</td>
+		<td class="tdkot">Adresse</td>
+		<td class="tdkot">Nombre de chambre dans le communautaire</td>
+  	</tr>
   <% @kots.each do |kot| %>
-    <li><%= kot.addresse %></li>
-    <li><%= link_to "Détails", kot_path(kot) %></li>
+  	<tr>
+  		<td class="tdkot"><%= kot.addresse %></td>
+    	<td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
+    	<td class="tdkot">Patrick</td>
+  	</tr>
   <% end %>
-</ul>
+</table>
 
 <h2>Tu veux rendre serice à la communauté ? <%= link_to "Ajoutes ton kot", new_kot_path %></h2>
 
