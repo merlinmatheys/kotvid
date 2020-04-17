@@ -1,9 +1,10 @@
-<%= form_for(@kot) do |f| %>
+<%= simple_form_for(@kot) do |f| %>
   <%= f.label :addresse %>
   <%= f.text_field :addresse %>
   <%= f.label :prix %>
   <%= f.text_field :prix %>
   <%= f.label :quartier %>
   <%= f.text_field :quartier %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit %>
 <% end %>

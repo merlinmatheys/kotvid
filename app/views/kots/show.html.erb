@@ -2,3 +2,9 @@
 <p><%= @kot.prix %>€</p>
 <p><%= @kot.quartier %></p>
 <p><%= link_to "Revenir à tous les kots", kots_path %></p>
+
+<div class="kot_photos">
+<% @kot.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+</div>
