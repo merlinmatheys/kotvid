@@ -1,9 +1,20 @@
-<ul>
+<table class="liste_kot">
+
+	<tr>
+		<td class="tdkot">Quartier</td>
+		<td class="tdkot">Adresse</td>
+		<td class="tdkot">Nombre de chambre dans le communautaire</td>
+  	</tr>
+
+
   <% @kots.each do |kot| %>
-    <li><%= kot.addresse %></li>
-    <li><%= link_to "Détails", kot_path(kot) %></li>
+  	<tr>
+  		<td class="tdkot"><%= kot.addresse %></td>
+    	<td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
+    	<td class="tdkot">Patrick</td>
+  	</tr>
   <% end %>
-</ul>
+</table>
 
 <h2>Tu veux rendre service à la communauté ? <%= link_to "Ajoutes ton kot", new_kot_path %></h2>
 
