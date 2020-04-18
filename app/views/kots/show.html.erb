@@ -1,15 +1,11 @@
-<div class="searchbar">
-	<h2><%= @kot.addresse %></h2>
-	<p><%= @kot.agence %></p>
-	<p><%= @kot.quartier %></p>
-	<p><%= @kot.nombre_chambres %></p>
+<div class="searchbar2">
+	<dir class="flex"><h2>Adresse : <%= @kot.addresse %></h2> <p class="left_p"><%= link_to "Revenir à tous les kots", root_path %></p> </dir>
+	<p>Type : <%= @kot.agence %></p>
+	<p>Quartier : <%= @kot.quartier %></p>
+	<p>Nombre de chambres dans le commu. : <%= @kot.nombre_chambres %></p>
 </div>
 
-<h2><%= @kot.addresse %></h2>
-<p><%= @kot.agence %></p>
-<p><%= @kot.quartier %></p>
-<p><%= @kot.nombre_chambres %></p>
-<p><%= link_to "Revenir à tous les kots", root_path %></p>
+
 <% if current_user %>
   <% if @kot.user_id == current_user.id || current_user.id == 1 || current_user.id == 2 || current_user.id == 3 %>
     <td class="tdkot"><%= link_to "Modifier", edit_kot_path %></td>
