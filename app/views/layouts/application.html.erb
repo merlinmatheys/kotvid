@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="icon" href="https://image.flaticon.com/icons/png/512/64/64431.png" type="image/png">
+
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -16,7 +18,7 @@
   <body>
 
     <div class="topnav">
-      <%= link_to "Trouves ton kot", kots_path, class: "active" %>
+      <%= link_to "Trouves ton kot", root_path, class: "active" %>
       <%= link_to "Ajoutes ton kot", new_kot_path, class: "active" %>
       <%= link_to "Créer un compte/Se connecter", new_user_session_path, class: "active" %>
     </div>

@@ -2,6 +2,10 @@
 <p><%= @kot.prix %>€</p>
 <p><%= @kot.quartier %></p>
 <p><%= link_to "Revenir à tous les kots", kots_path %></p>
+<% if @kot.user_id == current_user.id %>
+  <td class="tdkot"><%= link_to "Modifier", edit_kot_path(@kot) %></td>
+  <td class="tdkot"><%= link_to 'Supprimer', kot_path(@kot), data: {:confirm => 'Etes-vous sûr ?'}, :method => :delete %></td>
+<% end %>
 
 <div class="kot_photos">
 <% @kot.photos.each do |photo| %>

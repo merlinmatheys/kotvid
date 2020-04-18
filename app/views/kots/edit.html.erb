@@ -1,9 +1,25 @@
+<div id='sign-up-form'>
+<h2>Ajoutes ton kot!</h2>
+<% if user_signed_in? %>
+
+
 <%= simple_form_for(@kot) do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+<div class="input-new">
   <%= f.label :addresse %>
   <%= f.text_field :addresse %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-  <%= f.label :prix %>
-  <%= f.text_field :prix %>
+</div>
+<div class="input-new">
+  <%= f.label :type %>
+  <%= f.text_field :type, list: 'types' %>
+  <datalist id="types">
+    <option value="Kot UCL">
+    <option value="Kot privé">
+    <option value="Studio">
+    <option value="Appartement">
+  </datalist>
+</div>
+<div class="input-new">
   <%= f.label :quartier %>
   <%= f.text_field :quartier, list: 'quartiers' %>
   <datalist id="quartiers">
@@ -13,6 +29,22 @@
     <option value="Centre">
     <option value="Bruyères">
   </datalist>
+</div>
+<div class="input-new">
+  <%= f.label :nombre_chambres %>
+  <%= f.number_field :nombre_chambres %>
+</div>
+<div class="input-new">
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.submit %>
+  <%= f.button :submit, "Modifier" %>
+</div>
 <% end %>
+
+
+
+<% else %>
+<p>Vous devez être connecté pour modifier un kot existant</p>
+<%= link_to "Se connecter", new_user_session_path, class: "active" %>
+<% end %>
+
+</div>
