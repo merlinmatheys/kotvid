@@ -31,7 +31,7 @@ class KotsController < ApplicationController
   end
 
   def update
-    if @kot.user_id == current_user.id
+    if @kot.user_id == current_user.id || current_user.id == (1 || 2 || 3)
     @kot = Kot.update(kot_params)
     redirect_to kot_path(@kot)
     end
@@ -39,7 +39,7 @@ class KotsController < ApplicationController
 
   def destroy
     @kot = Kot.find(params[:id])
-    if @kot.user_id == current_user.id
+    if @kot.user_id == current_user.id || current_user.id == (1 || 2 || 3)
     @kot.destroy
     redirect_to root_path
     end
