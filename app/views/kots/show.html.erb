@@ -12,7 +12,7 @@
 <p><%= link_to "Revenir à tous les kots", root_path %></p>
 <% if current_user %>
   <% if @kot.user_id == current_user.id || current_user.id == 1 || current_user.id == 2 || current_user.id == 3 %>
-    <td class="tdkot"><%= link_to "Modifier", edit_kot_path %></td>
+    <td class="tdkot"><%= link_to "Modifier", edit_kot_path(@kot) %></td>
     <td class="tdkot"><%= link_to 'Supprimer', kot_path(@kot), data: {:confirm => 'Etes-vous sûr ?'}, :method => :delete %></td>
   <% end %>
 <% end %>
