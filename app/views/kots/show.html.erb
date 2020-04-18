@@ -1,6 +1,7 @@
 <h2><%= @kot.addresse %></h2>
-<p><%= @kot.prix %>€</p>
+<p><%= @kot.agence %></p>
 <p><%= @kot.quartier %></p>
+<p><%= @kot.nombre_chambres %></p>
 <p><%= link_to "Revenir à tous les kots", kots_path %></p>
 <% if @kot.user_id == current_user.id %>
   <td class="tdkot"><%= link_to "Modifier", edit_kot_path(@kot) %></td>
