@@ -7,11 +7,11 @@
   <%= f.hidden_field :user_id, :value => current_user.id %>
 <div class="input-new">
   <%= f.label :addresse %>
-  <%= f.text_field :addresse %>
+  <%= f.text_field :addresse, placeholder: 'Rue de la Ramée 14/001', label:false, class: 'input-field' %>
 </div>
 <div class="input-new">
   <%= f.label :type %>
-  <%= f.text_field :type, list: 'types' %>
+  <%= f.text_field :agence, list: 'types' %>
   <datalist id="types">
     <option value="Kot UCL">
     <option value="Kot privé">
@@ -36,14 +36,14 @@
 </div>
 <div class="input-new">
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.button :submit, "Modifier" %>
+  <%= f.button :submit, "Ajouter" %>
 </div>
 <% end %>
 
 
 
 <% else %>
-<p>Vous devez être connecté pour modifier un kot existant</p>
+<p>Vous devez être connecté pour ajouter un kot</p>
 <%= link_to "Se connecter", new_user_session_path, class: "active" %>
 <% end %>
 
