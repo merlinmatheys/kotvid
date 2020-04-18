@@ -6,7 +6,7 @@ class KotsController < ApplicationController
       @kots = Kot.near(params[:location], 10000, order: :distance)
     else
       all_kots = Kot.all
-      @kots = all_kots.sort_by { |all_kots| all_kots[:addresse] }
+      @kots = all_kots.sort_by { |all_kots| all_kots[:addresse].capitalize }
     end
   end
 
