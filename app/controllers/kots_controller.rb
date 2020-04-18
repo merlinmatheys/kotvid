@@ -5,7 +5,8 @@ class KotsController < ApplicationController
     if params[:location].present?
       @kots = Kot.near(params[:location], 10000, order: :distance)
     else
-      @kots = Kot.all
+      all_kots = Kot.all
+      @kots = all_kots.sort_by { |all_kots| all_kots[:addresse] }
     end
   end
 
