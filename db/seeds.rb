@@ -8,3 +8,4 @@
 
 Kot.destroy_all
 User.destroy_all
+
