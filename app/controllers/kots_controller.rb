@@ -7,13 +7,6 @@ class KotsController < ApplicationController
     else
       @kots = Kot.all
     end
-
-    # @markers = @kots.map do |kot|
-    #   {
-    #     lat: kot.latitude,
-    #     lng: kot.longitude
-    #   }
-    # end
   end
 
   def show
