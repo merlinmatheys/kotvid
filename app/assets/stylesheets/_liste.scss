@@ -4,19 +4,11 @@
   	padding: 10px;
 }
 
-.tab_kot{
-	margin: auto;
+
+
+.container{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
-.liste_kot{
-	text-align: center;
-	margin-top : 5vh;
-}
-
-.cadre{
-	margin: auto;
-}
-
-.taille{
-	width: 80%;
-}
