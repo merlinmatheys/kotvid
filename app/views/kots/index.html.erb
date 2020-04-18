@@ -1,22 +1,26 @@
-<div class="searchbar">
-  <%= form_tag root_path, method: :get do %>
-    <%= label :location, "Chercher par adresse ", class: 'chercher' %>
-    <%= text_field_tag :location, params[:location] %>
-    <%= submit_tag "Go", class: 'btn' %>
-  <% end %>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.csblocry.be/wp-content/uploads/2017/10/piscines.jpg);">
+  <div class="container">
+    <h1>KotVid vous propose une solution simple pour trouver le kot de vos rêves</h1>
+    <p>Tout le monde le sait, les visites sont interdites à cause de la crise du covid-19. C'est pourquoi nous avons mis en place une plateforme qui permet de facilement avoir des informations et des photos de nombreux kots sur louvain-la-neuve afin que tu puisses trouver la perle rare.</p>
+    <div class="searchbar">
+      <%= form_tag root_path, method: :get do %>
+        <%= label :location, "Chercher par adresse ", class: 'chercher' %>
+        <%= text_field_tag :location, params[:location] %>
+        <%= submit_tag "Go", class: 'btn' %>
+      <% end %>
+    </div>
+  </div>
 </div>
 
 
 <div class="container">
   <table class="container_fils">
-  	<tr >
-
+  	<tr>
       <td class="tdkot gras">Quartier</td>
       <td class="tdkot gras">Adresse</td>
   		<td class="tdkot gras">Type de logement</td>
       <td class="tdkot gras">Nb chambres</td>
   		<td class="tdkot gras">En savoir plus</td>
-
     	</tr>
     <% @kots.each do |kot| %>
 
