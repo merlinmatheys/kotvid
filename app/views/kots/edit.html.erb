@@ -36,14 +36,14 @@
 </div>
 <div class="input-new">
   <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.button :submit, "Ajouter" %>
+  <%= f.button :submit, "Modifier" %>
 </div>
 <% end %>
 
 
 
 <% else %>
-<p>Vous devez être connecté pour ajouter un kot</p>
+<p>Vous devez être connecté pour modifier un kot existant</p>
 <%= link_to "Se connecter", new_user_session_path, class: "active" %>
 <% end %>
 
