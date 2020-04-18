@@ -18,27 +18,29 @@
   <% end %>
 </td>
 
-<table class="container_fils">
-	<tr >
+<div class="container">
+  <table class="container_fils">
+  	<tr >
 
-    <td class="tdkot">Quartier</td>
-    <td class="tdkot">Adresse</td>
-		<td class="tdkot">Type de logement</td>
-    <td class="tdkot">Nb chambres</td>
-		<td class="tdkot">En savoir plus</td>
+      <td class="tdkot">Quartier</td>
+      <td class="tdkot">Adresse</td>
+  		<td class="tdkot">Type de logement</td>
+      <td class="tdkot">Nb chambres</td>
+  		<td class="tdkot">En savoir plus</td>
 
-  	</tr>
-  <% @kots.each do |kot| %>
+    	</tr>
+    <% @kots.each do |kot| %>
 
-  	<tr>
-      <td class="tdkot"><%= kot.quartier %></td>
-      <td class="tdkot"><%= kot.addresse %></td>
-  		<td class="tdkot"><%= kot.agence %></td>
-      <td class="tdkot"><%= kot.nombre_chambres %></td>
-      <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
-  	</tr>
-  <% end %>
-</table>
+    	<tr>
+        <td class="tdkot"><%= kot.quartier %></td>
+        <td class="tdkot"><%= kot.addresse %></td>
+    		<td class="tdkot"><%= kot.agence %></td>
+        <td class="tdkot"><%= kot.nombre_chambres %></td>
+        <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
+    	</tr>
+    <% end %>
+  </table>
+</div>
 
 
 <h2>Tu veux rendre serice à la communauté ? <%= link_to "Ajoutes ton kot", new_kot_path %></h2>
