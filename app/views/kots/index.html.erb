@@ -1,22 +1,11 @@
-
-
-
-<%# simple_form_for :search, url: kots_path, method: "GET" do |f| %>
-<%# f.text_field :input_addresse, placeholder: 'Addresse' %>
-<%# f.submit "Search" %>
-<%# end %>
-
-<td class="container">
+<div class="searchbar">
   <%= form_tag root_path, method: :get do %>
-    <%= label :location, "Chercher un kot proche de: " %>
+    <%= label :location, "Chercher par adresse ", class: 'chercher' %>
     <%= text_field_tag :location, params[:location] %>
-
-    <%# label :distance, "Distance : " %>
-    <%# text_field_tag :distance, params[:distance] %>
-
-    <%= submit_tag "Go" %>
+    <%= submit_tag "Go", class: 'btn' %>
   <% end %>
-</td>
+</div>
+
 
 <div class="container">
   <table class="container_fils">
