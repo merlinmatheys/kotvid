@@ -18,6 +18,15 @@
   color: red;
 }
 
+.input-new {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-field {
+
+}
+
 .required, .optional {
   margin: 3px;
 }
