@@ -31,6 +31,7 @@ class KotsController < ApplicationController
   end
 
   def update
+    @kot = Kot.find(params[:id])
     if @kot.user_id == current_user.id
     @kot = Kot.update(kot_params)
     redirect_to kot_path(@kot)
