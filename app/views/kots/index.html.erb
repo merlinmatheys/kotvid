@@ -6,19 +6,21 @@
 <%# f.submit "Search" %>
 <%# end %>
 
+<td class="cadre taille">
 <%= form_tag kots_path, method: :get do %>
-  <%= label :location, "Search classifieds near : " %>
+  <%= label :location, "Chercher un kot proche de: " %>
   <%= text_field_tag :location, params[:location] %>
 
   <%= label :distance, "Distance : " %>
   <%= text_field_tag :distance, params[:distance] %>
 
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Go" %>
 <% end %>
+</td>
 
-<div class="liste_kot">
+<div class="tab_kot">
   <table class="liste_kot">
-  	<tr>
+  	<tr class="taille">
 
       <td class="tdkot">Quartier</td>
   		<td class="tdkot">Adresse</td>
@@ -27,7 +29,7 @@
   		
     	</tr>
     <% @kots.each do |kot| %>
-    	<tr>
+    	<tr class="taille">
         <td class="tdkot">Ici c'est les grands du quartier</td>
     		<td class="tdkot"><%= kot.addresse %></td>
         <td class="tdkot">ici nombre</td>
