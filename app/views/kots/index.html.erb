@@ -10,8 +10,8 @@
   <%= label :location, "Search classifieds near : " %>
   <%= text_field_tag :location, params[:location] %>
 
-  <%= label :distance, "Distance : " %>
-  <%= text_field_tag :distance, params[:distance] %>
+  <%# label :distance, "Distance : " %>
+  <%# text_field_tag :distance, params[:distance] %>
 
   <%= submit_tag "Search" %>
 <% end %>
@@ -21,21 +21,19 @@
   	<tr>
 
       <td class="tdkot">Quartier</td>
-  		<td class="tdkot">Adresse</td>
-      <td class="tdkot">Nombre de chambre dans le communautaire</td>
+      <td class="tdkot">Adresse</td>
+  		<td class="tdkot">Type de logement</td>
+      <td class="tdkot">Nb chambres</td>
   		<td class="tdkot">En savoir plus</td>
 
     	</tr>
     <% @kots.each do |kot| %>
     	<tr>
-        <td class="tdkot">Ici c'est les grands du quartier</td>
-    		<td class="tdkot"><%= kot.addresse %></td>
-        <td class="tdkot">ici nombre</td>
+        <td class="tdkot"><%= kot.quartier %></td>
+        <td class="tdkot"><%= kot.addresse %></td>
+    		<td class="tdkot"><%= kot.type %></td>
+        <td class="tdkot"><%= kot.nombre_chambres %></td>
         <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
-        <% if kot.user_id == current_user.id %>
-      	<td class="tdkot"><%= link_to "Modifier", edit_kot_path(kot) %></td>
-        <% end %>
-
     	</tr>
     <% end %>
   </table>

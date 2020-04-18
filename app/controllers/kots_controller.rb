@@ -3,17 +3,17 @@ class KotsController < ApplicationController
 
   def index
     if params[:location].present?
-      @kots = Kot.near(params[:location], params[:distance] || 10, order: :distance)
+      @kots = Kot.near(params[:location], 10000, order: :distance)
     else
       @kots = Kot.all
     end
 
-    @markers = @kots.map do |kot|
-      {
-        lat: kot.latitude,
-        lng: kot.longitude
-      }
-    end
+    # @markers = @kots.map do |kot|
+    #   {
+    #     lat: kot.latitude,
+    #     lng: kot.longitude
+    #   }
+    # end
   end
 
   def show
@@ -26,9 +26,10 @@ class KotsController < ApplicationController
 
   def create
     @kot = Kot.new(kot_params)
-    @kot.save
-    # Will raise ActiveModel::ForbiddenAttributesError
-    redirect_to kots_path
+    if @kot.valid?
+      @kot.save
+      redirect_to kots_path
+    end
   end
 
   def edit
@@ -36,13 +37,18 @@ class KotsController < ApplicationController
   end
 
   def update
+    if @kot.user_id == current_user.id
     @kot = Kot.update(kot_params)
     redirect_to kot_path(@kot)
+    end
   end
 
   def destroy
+    @kot = Kot.find(params[:id])
+    if @kot.user_id == current_user.id
     @kot.destroy
-    redirect_to kots_path
+    redirect_to root_path
+    end
   end
 
 
