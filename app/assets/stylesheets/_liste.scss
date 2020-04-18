@@ -1,7 +1,7 @@
 .tdkot{
 	background-color: #bde9ba;
 	border: 1px solid black;
-  	padding: 10px;
+  padding: 10px;
 }
 
 .cadre{
@@ -20,6 +20,21 @@
   margin: 0 10vw 0 10vw;
 }
 
+<<<<<<< HEAD
 .gras{
 	font-weight: bold;
+=======
+.searchbar {
+  text-align: center;
+  margin: 20px 10vw 20px 10vw;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  input {
+    font-size: 25px;
+  }
+  .btn {
+    font-size: 20px;
+  }
+>>>>>>> fc6f52e9392016add85081b3e14b7d514948c0b6
 }

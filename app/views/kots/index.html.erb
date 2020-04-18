@@ -1,22 +1,11 @@
-
-
-
-<%# simple_form_for :search, url: kots_path, method: "GET" do |f| %>
-<%# f.text_field :input_addresse, placeholder: 'Addresse' %>
-<%# f.submit "Search" %>
-<%# end %>
-
-<td class="container">
-  <%= form_tag kots_path, method: :get do %>
-    <%= label :location, "Chercher un kot proche de: " %>
+<div class="searchbar">
+  <%= form_tag root_path, method: :get do %>
+    <%= label :location, "Chercher par adresse ", class: 'chercher' %>
     <%= text_field_tag :location, params[:location] %>
-
-    <%# label :distance, "Distance : " %>
-    <%# text_field_tag :distance, params[:distance] %>
-
-    <%= submit_tag "Go" %>
+    <%= submit_tag "Go", class: 'btn' %>
   <% end %>
-</td>
+</div>
+
 
 <div class="container">
   <table class="container_fils">
@@ -33,7 +22,7 @@
 
     	<tr>
         <td class="tdkot"><%= kot.quartier %></td>
-        <td class="tdkot"><%= kot.addresse %></td>
+        <td class="tdkot"><%= kot.addresse.capitalize %></td>
     		<td class="tdkot"><%= kot.agence %></td>
         <td class="tdkot"><%= kot.nombre_chambres %></td>
         <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
@@ -41,6 +30,9 @@
     <% end %>
   </table>
 </div>
+
+
+
 
 
 <h2>Tu veux rendre serice à la communauté ? <%= link_to "Ajoutes ton kot", new_kot_path %></h2>
