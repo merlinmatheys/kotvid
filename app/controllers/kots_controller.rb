@@ -28,7 +28,7 @@ class KotsController < ApplicationController
     @kot = Kot.new(kot_params)
     if @kot.valid?
       @kot.save
-      redirect_to kots_path
+      redirect_to root_path
     end
   end
 
@@ -55,7 +55,7 @@ class KotsController < ApplicationController
   private
 
   def kot_params
-    params.require(:kot).permit(:addresse, :prix, :quartier, :agence, :nbchambres, :description, :user_id, photos: [])
+    params.require(:kot).permit(:addresse, :prix, :quartier, :agence, :nombre_chambres, :description, :user_id, :type, photos: [])
   end
 
 end
