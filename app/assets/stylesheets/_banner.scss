@@ -15,7 +15,6 @@
 
 .searchbar {
   margin: auto;
-  margin-top: 25vh;
   text-align: center;
   width: 70%;
   padding: 5px;
@@ -36,15 +35,12 @@
 }
 
 .parent{
-  vertical-align: middle;
+
+  justify-content: space-between;
   display: flex;
   flex-direction: column;
 }
 
-
-.enfant{
-  margin: auto;
-}
 
 
 
@@ -65,7 +61,7 @@
 
 
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url("banner.png");
-  height: 75vh;
+  height: 80vh;
   background-repeat: no-repeat;
   padding: 0px 0;
   background-image: url('../../../banner.png');
