@@ -1,14 +1,14 @@
 <div class="searchbar2">
 
-	<div class="flex"> 
-		<%= link_to '<i class="fas fa-chevron-left"></i>'.html_safe,root_path, class: 'nav-link' %> 
-		<h2>Adresse : <%= @kot.addresse %></h2> 
+	<div class="flex">
+		<%= link_to '<i class="fas fa-chevron-left"></i>'.html_safe,root_path, class: 'nav-link' %>
+		<h2>Adresse : <%= @kot.addresse %></h2>
 	</div>
 
-	
 
-	
-	<p>Type : <%= @kot.agence %></p>
+
+
+	<p>Type : <%= @kot.type_kot %></p>
 	<p>Quartier : <%= @kot.quartier %></p>
 	<p>Nombre de chambres dans le commu. : <%= @kot.nombre_chambres %></p>
 </div>
