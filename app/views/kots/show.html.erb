@@ -1,9 +1,9 @@
 <div class="searchbar2">
 
-	<div class="flex">
-		<%= link_to '<i class="fas fa-caret-square-left"></i>'.html_safe,root_path, class: 'nav-link' %>
-		<h2 class="adresse_titre">Adresse : <%= @kot.addresse %></h2>
-
+	<div class="flex"> 
+		<%= link_to '<i class="fas fa-caret-square-left"></i>'.html_safe,root_path, class: 'nav-link' %> 
+		<h2 class="adresse_titre">Adresse : <%= @kot.addresse %></h2> 
+  
 
 	<p class="pad padtop">Type : <%= @kot.agence %></p>
 	<p class="pad">Quartier : <%= @kot.quartier %></p>
@@ -20,59 +20,8 @@
 
 
 
-<script>
-  var slideIndex = 1;
-showSlides(slideIndex);
-
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-}
-
-</script>
-
-<!-- Slideshow container -->
-<div class="slideshow-container">
+<div class="kot_photos">
 <% @kot.photos.each do |photo| %>
-  <!-- Full-width images with number and caption text -->
-  <div class="mySlides fade">
-    <!-- <div class="numbertext">3 / 3</div> -->
-    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-    <!-- <img src="img3.jpg" style="width:100%"> -->
-    <!-- <div class="text">Caption Three</div> -->
-  </div>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
 <% end %>
-
-  <!-- Next and previous buttons -->
-  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br>
-
-<!-- The dots/circles -->
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span>
-  <span class="dot" onclick="currentSlide(2)"></span>
-  <span class="dot" onclick="currentSlide(3)"></span>
 </div>
