@@ -4,9 +4,8 @@
     <p>Tout le monde le sait, les visites sont interdites à cause de la crise du covid-19. C'est pourquoi nous avons mis en place une plateforme qui permet de facilement avoir des informations et des photos de nombreux kots sur louvain-la-neuve afin que tu puisses trouver la perle rare.</p>
     <div class="searchbar">
       <%= form_tag root_path, method: :get do %>
-        <%= label :location, "Chercher par adresse ", class: 'chercher' %>
-        <%= text_field_tag :location, params[:location] %>
-        <%= submit_tag "Go", class: 'btn' %>
+        <%= text_field_tag :location, params[:location], placeholder: '   Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve', class: 'recherche' %>
+        <%= submit_tag "🔍 Rechercher", class: 'btn-ghost' %>
       <% end %>
     </div>
   </div>
