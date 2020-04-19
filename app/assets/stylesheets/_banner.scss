@@ -3,17 +3,24 @@
   padding: 0;
 }
 
-
-
+.logo{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height : 150px;
+  width : 150px;
+}
 
 
 
 
 .banner {
+
+
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url("banner.png");
-  height: 30vh;
+  height: 75vh;
   background-repeat: no-repeat;
-  padding: 150px 0;
+  padding: 0px 0;
   background-image: url('../../../banner.png');
   
   background-position: center;
@@ -25,16 +32,63 @@
 }
 
 .banner h1 {
+  text-align: center;
   margin: 0;
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
+  font-size: 96px;
+  font-weight: Normal;
 }
 
+.banner h2 {
+  text-align: center;
+  margin: 0;
+  color: white;
+  padding-top: 10px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 28px;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+
+/* pas utilisé */
 .banner p {
   font-size: 20px;
   color: white;
   opacity: .7;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
+
+
+@media screen and (max-width: 900px) {
+  .logo{
+
+    height: 110px;
+    width: 110px;
+  }
+
+  .banner h1 {
+    font-size: 80px;
+  }
+  .banner h2 {
+    font-size: 20px;
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+  .logo{
+    height: 75px;
+    width: 75px;
+  }
+  .banner h1 {
+    font-size: 70px;
+  }
+  .banner h2 {
+    font-size: 16px;
+  }
+}
+
+
+
