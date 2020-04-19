@@ -1,23 +1,34 @@
 <div class="searchbar2">
 
 	<div class="flex">
-		<%= link_to '<i class="fas fa-caret-square-left"></i>'.html_safe,root_path, class: 'nav-link' %>
+    <div class="flex-left">
+		<%= link_to '<i class="fas fa-caret-square-left"></i>'.html_safe, root_path, class: 'nav-link' %>
 		<h2 class="adresse_titre">Adresse : <%= @kot.addresse %></h2>
+    </div>
+    <div class="flex-right">
+      <% if current_user %>
+        <% if @kot.user_id == current_user.id || current_user.id == 1 || current_user.id == 2 || current_user.id == 3 %>
+        <td><%= link_to '<i class="fas fa-edit"></i>'.html_safe, edit_kot_path %></td>
+        <td><%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe, kot_path(@kot), data: {:confirm => 'Supprimer ce kot ?'}, :method => :delete %></td>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
-
-	<p class="pad padtop">Type : <%= @kot.agence %></p>
-	<p class="pad">Quartier : <%= @kot.quartier %></p>
-	<p class="pad">Nombre de chambres dans le commu. : <%= @kot.nombre_chambres %></p>
-	<div class="pad">
-		<% if current_user %>
-	  		<% if @kot.user_id == current_user.id || current_user.id == 1 || current_user.id == 2 || current_user.id == 3 %>
-	    	<td><%= link_to "Modifier", edit_kot_path %></td>
-	    	<td><%= link_to 'Supprimer', kot_path(@kot), data: {:confirm => 'Etes-vous sûr ?'}, :method => :delete %></td>
-	  		<% end %>
-		<% end %>
-	</div>
-
+  <div class="info-box">
+    <div>
+    <p class="blue-title">Type:</p>
+    <p><%= @kot.type_kot %></p>
+    </div>
+    <div>
+    <p class="blue-title">Quartier:</p>
+    <p><%= @kot.quartier %></p>
+    </div>
+    <div>
+    <p class="blue-title">Nb chambres commu:</p>
+    <p><%= @kot.nombre_chambres %></p>
+    </div>
+  </div>
 
 
 <script>
