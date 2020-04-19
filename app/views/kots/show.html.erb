@@ -1,25 +1,31 @@
 <div class="searchbar2">
 
 	<div class="flex"> 
-		<%= link_to '<i class="fas fa-chevron-left"></i>'.html_safe,root_path, class: 'nav-link' %> 
-		<h2>Adresse : <%= @kot.addresse %></h2> 
+		<%= link_to '<i class="fas fa-caret-square-left"></i>'.html_safe,root_path, class: 'nav-link' %> 
+		<h2 class="adresse_titre">Adresse : <%= @kot.addresse %></h2> 
 	</div>
 
 	
 
 	
-	<p>Type : <%= @kot.agence %></p>
-	<p>Quartier : <%= @kot.quartier %></p>
-	<p>Nombre de chambres dans le commu. : <%= @kot.nombre_chambres %></p>
+	<p class="pad padtop">Type : <%= @kot.agence %></p>
+	<p class="pad">Quartier : <%= @kot.quartier %></p>
+	<p class="pad">Nombre de chambres dans le commu. : <%= @kot.nombre_chambres %></p>
+	<div class="pad">
+		<% if current_user %>
+	  		<% if @kot.user_id == current_user.id || current_user.id == 1 || current_user.id == 2 || current_user.id == 3 %>
+	    	<td><%= link_to "Modifier", edit_kot_path %></td>
+	    	<td><%= link_to 'Supprimer', kot_path(@kot), data: {:confirm => 'Etes-vous sûr ?'}, :method => :delete %></td>
+	  		<% end %>
+		<% end %>
+	</div>
+
+
+
+
 </div>
 
 
-<% if current_user %>
-  <% if @kot.user_id == current_user.id || current_user.id == 1 || current_user.id == 2 || current_user.id == 3 %>
-    <td class="tdkot"><%= link_to "Modifier", edit_kot_path %></td>
-    <td class="tdkot"><%= link_to 'Supprimer', kot_path(@kot), data: {:confirm => 'Etes-vous sûr ?'}, :method => :delete %></td>
-  <% end %>
-<% end %>
 
 <div class="kot_photos">
 <% @kot.photos.each do |photo| %>
