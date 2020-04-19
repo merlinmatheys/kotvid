@@ -31,18 +31,17 @@
     font-size: 18px;
     width: 30%;
   }
-
 }
 
 .parent{
-
-  justify-content: space-between;
+  height: 80vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  .banner-text {
+    margin-top: 5%;
+  }
 }
-
-
-
 
 /* pas utilisé */
 
@@ -56,22 +55,16 @@
 
 
 .banner {
-
   flex-direction: row;
-
-
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url("banner.png");
   height: 80vh;
   background-repeat: no-repeat;
   padding: 0px 0;
   background-image: url('../../../banner.png');
-  
   background-position: center;
   background-size: cover;
   position: relative;
-
-
-
+  margin: auto;
 }
 
 .banner h1 {

@@ -1,34 +1,20 @@
 <div class="banner">
-
-
-
   <div class="parent">
-
-
-    <img class="logo"src="logo_rond.png" alt="logo kotvid">
-
-
-
     <div>
+    <img class="logo"src="logo_rond.png" alt="logo kotvid">
+    </div>
+    <div class="banner-text">
       <h1>VISITE TON KOT</h1>
       <h2>Malgré le confinement</h2>
       <p>Kotvid est une plateforme coopérative répertoriant des photos de tous les kots de louvain. <br />A cause du confinement personne ne peut visiter de kots tu trouveras ici un base de données de tous les kots de Louvain-la-Neuve!</p>
     </div>
-
-
     <div class="searchbar">
         <%= form_tag root_path, method: :get do %>
           <%= text_field_tag :location, params[:location], placeholder: '   Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve', class: 'recherche' %>
           <%= submit_tag "🔍 Rechercher", class: 'btn-ghost' %>
         <% end %>
     </div>
-
-  
   </div>
-
-  
- 
-
 </div>
 
 
