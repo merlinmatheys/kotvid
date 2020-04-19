@@ -1,50 +1,59 @@
 <div id='sign-up-form'>
-<h2>Ajoutes ton kot!</h2>
-<% if user_signed_in? %>
-
-
-<%= simple_form_for(@kot) do |f| %>
-  <%= f.hidden_field :user_id, :value => current_user.id %>
-<div class="input-new">
-  <%= f.label :addresse %>
-  <%= f.text_field :addresse, placeholder: 'Rue de la Ramée 14/001', label:false, class: 'input-field' %>
-</div>
-<div class="input-new">
-  <%= f.label :type_kot %>
-  <%= f.text_field :type_kot, list: 'types' %>
-  <datalist id="types">
-    <option value="Kot UCL">
-    <option value="Kot privé">
-    <option value="Studio">
-    <option value="Appartement">
-  </datalist>
-</div>
-<div class="input-new">
-  <%= f.label :quartier %>
-  <%= f.text_field :quartier, list: 'quartiers' %>
-  <datalist id="quartiers">
-    <option value="Biéreau">
-    <option value="Lauzelle">
-    <option value="Hocaille">
-    <option value="Centre">
-    <option value="Bruyères">
-  </datalist>
-</div>
-<div class="input-new">
-  <%= f.label :nombre_chambres %>
-  <%= f.number_field :nombre_chambres %>
-</div>
-<div class="input-new">
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.button :submit, "Ajouter" %>
-</div>
-<% end %>
-
-
-
-<% else %>
-<p>Vous devez être connecté pour ajouter un kot</p>
-<%= link_to "Se connecter", new_user_session_path, class: "active" %>
-<% end %>
-
+<h2>Modifies ton kot!</h2>
+  <% if user_signed_in? %>
+    <%= simple_form_for(@kot) do |f| %>
+    <div class="form-inputs">
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="label">
+        <%= f.label :addresse %>
+      </div>
+      <div class="field">
+        <%= f.text_field :addresse, placeholder: 'Rue de la Ramée, 14/001, 1348 - Louvain-la-Neuve', class: 'connection-input' %>
+      </div>
+      <div class="label">
+        <%= f.label :type_kot %>
+      </div>
+      <div class="field">
+        <%= f.text_field :type_kot, list: 'types', class: 'connection-input' %>
+        <datalist id="types">
+          <option value="Kot UCL">
+          <option value="Kot privé">
+          <option value="Studio">
+          <option value="Appartement">
+        </datalist>
+      </div>
+      <div class="label">
+        <%= f.label :quartier %>
+      </div>
+      <div class="field">
+        <%= f.text_field :quartier, list: 'quartiers', class: 'connection-input' %>
+        <datalist id="quartiers">
+          <option value="Biéreau">
+          <option value="Lauzelle">
+          <option value="Hocaille">
+          <option value="Centre">
+          <option value="Bruyères">
+        </datalist>
+      </div>
+      <div class="label">
+        <%= f.label :nombre_chambres %>
+      </div>
+      <div class="field">
+        <%= f.number_field :nombre_chambres, class: 'connection-input' %>
+      </div>
+      <div class="label">
+        <%= f.label :photos %>
+      </div>
+      <div class="field">
+        <%= f.input_field :photos, as: :file, input_html: { multiple: true }, class: 'photo-input' %>
+      </div>
+      <div class="form-actions">
+        <%= f.button :submit, "Modifier", class: "ajouter" %>
+      </div>
+    </div>
+    <% end %>
+  <% else %>
+    <p>Vous devez être connecté pour ajouter un kot</p>
+    <%= link_to "Se connecter", new_user_session_path, class: "active" %>
+  <% end %>
 </div>
