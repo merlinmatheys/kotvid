@@ -7,455 +7,385 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Kot.destroy_all
-User.destroy_all
+# User.destroy_all
 
 Kot.create([
   {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
  {
     addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
+    type_kot: 'Kot UCL',
     quartier: 'Biéreau',
     nombre_chambres: 4,
     user_id: 1
  },
- {
-    addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
-    quartier: 'Biéreau',
-    nombre_chambres: 4,
-    user_id: 1
- },
- {
-    addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
-    quartier: 'Biéreau',
-    nombre_chambres: 4,
-    user_id: 1
- },
- {
-    addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
-    quartier: 'Biéreau',
-    nombre_chambres: 4,
-    user_id: 1
- },
- {
-    addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
-    quartier: 'Biéreau',
-    nombre_chambres: 4,
-    user_id: 1
- },
- {
-    addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
-    quartier: 'Biéreau',
-    nombre_chambres: 4,
-    user_id: 1
- },
- {
-    addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
-    quartier: 'Biéreau',
-    nombre_chambres: 4,
-    user_id: 1
- },
- {
-    addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
-    quartier: 'Biéreau',
-    nombre_chambres: 4,
-    user_id: 1
- },
- {
-    addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
-    quartier: 'Biéreau',
-    nombre_chambres: 4,
-    user_id: 1
- },
- {
-    addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
-    quartier: 'Biéreau',
-    nombre_chambres: 4,
-    user_id: 1
- },
- {
-    addresse: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve',
-    agence: 'Kot UCL',
-    quartier: 'Biéreau',
-    nombre_chambres: 4,
-    user_id: 1
- }
 ])
