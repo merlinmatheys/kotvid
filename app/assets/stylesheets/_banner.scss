@@ -3,11 +3,27 @@
   padding: 0;
 }
 
+
+
+
+
+
+
+
+
 .banner {
-  height: 25vh;
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url("banner.png");
+  height: 30vh;
   background-repeat: no-repeat;
   padding: 150px 0;
   background-image: url('../../../banner.png');
+  
+  background-position: center;
+  background-size: cover;
+  position: relative;
+
+
+
 }
 
 .banner h1 {
