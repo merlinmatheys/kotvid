@@ -59,7 +59,7 @@
     <% @kot.photos.each_with_index do |photo, index| %>
   <div class="mySlides fade">
       <div class="numbertext"><%= index + 1 %> / <%= @kot.photos.count %></div>
-      <%= cl_image_tag photo.key, crop: :fill, class: 'big-image' %>
+      <%= cl_image_tag photo.key, class: 'big-image' %>
       <!-- <img src="img1.jpg" style="width:100%">
       <div class="text">Caption Text</div> -->
   </div>
