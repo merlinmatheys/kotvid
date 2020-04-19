@@ -1,12 +1,28 @@
-function myFunction(imgs) {
-  // Get the expanded image
-  var expandImg = document.getElementById("expandedImg");
-  // Get the image text
-  var imgText = document.getElementById("imgtext");
-  // Use the same src in the expanded image as the image being clicked on from the grid
-  expandImg.src = imgs.src;
-  // Use the value of the alt attribute of the clickable image as text inside the expanded image
-  imgText.innerHTML = imgs.alt;
-  // Show the container element (hidden with CSS)
-  expandImg.parentElement.style.display = "block";
-}
+import mapboxgl from 'mapbox-gl';
+
+const initMapbox = () => {
+  const mapElement = document.getElementById('map');
+
+  const fitMapToMarkers = (map, markers) => {
+    const bounds = new mapboxgl.LngLatBounds();
+    markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
+    map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+  };
+
+  if (mapElement) { // only build a map if there's a div#map to inject into
+    mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v10'
+    });
+    const markers = JSON.parse(mapElement.dataset.markers);
+    markers.forEach((marker) => {
+      new mapboxgl.Marker()
+        .setLngLat([ marker.lng, marker.lat ])
+        .addTo(map);
+    });
+    fitMapToMarkers(map, markers);
+  }
+};
+
+export { initMapbox };
