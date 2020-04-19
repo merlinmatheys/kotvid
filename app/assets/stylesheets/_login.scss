@@ -3,10 +3,11 @@
   margin: auto;
   h2 {
     text-align: center;
+    margin: 15px 0 10px 0;
   }
   background-color: white;
   margin-top: 10vh;
-  padding: 7px 20px 20px 20px;
+  padding: 7px 20px 0px 20px;
   border-radius: 5px;
   box-shadow: 5px 5px 5px rgb(235, 235, 235);
   a {
@@ -14,13 +15,56 @@
   }
 }
 
+@media(max-width: 900px) {
+  #sign-up-form {
+    width: 70vw;
+    margin-top: 5vh;
+  }
+}
+
+@media(max-width: 700px) {
+  #sign-up-form {
+    width: 100vw;
+    margin-top: 0;
+  }
+}
+
 .form-inputs {
   color: red;
+  .label {
+
+  }
+  .field {
+    color: red;
+  }
+}
+
+.connection-input {
+  width: 100%;
+  border-radius: 3px;
+  margin: 10px 0 10px 0;
+  padding: 3px 0 3px 0;
+  font-size: 19px;
+  border: 2px solid rgb(221, 221, 221);
+  background-image:none;
+  background-color:transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
 
 .input-new {
   display: flex;
   flex-direction: column;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login-links {
+  text-align: right;
 }
 
 .required, .optional {
