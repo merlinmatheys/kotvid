@@ -23,8 +23,8 @@
   	<tr>
       <td class="tdkot gras">Quartier</td>
       <td class="tdkot gras">Adresse</td>
-  		<td class="tdkot gras">Type de logement</td>
-      <td class="tdkot gras">Nb chambres</td>
+  		<td class="tdkot gras none">Type de logement</td>
+      <td class="tdkot gras none">Nb chambres</td>
   		<td class="tdkot gras">En savoir plus</td>
     	</tr>
     <% @kots.each do |kot| %>
@@ -32,8 +32,8 @@
     	<tr>
         <td class="tdkot"><%= kot.quartier %></td>
         <td class="tdkot"><%= kot.addresse.capitalize %></td>
-    		<td class="tdkot"><%= kot.type_kot %></td>
-        <td class="tdkot"><%= kot.nombre_chambres %></td>
+    		<td class="tdkot none"><%= kot.type_kot %></td>
+        <td class="tdkot none"><%= kot.nombre_chambres %></td>
         <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
     	</tr>
     <% end %>
