@@ -72,7 +72,7 @@
   margin: 0;
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 96px;
+  font-size: 86px;
   font-weight: Normal;
 }
 
@@ -83,6 +83,17 @@
   padding-top: 10px;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   font-size: 28px;
+  font-weight: normal;
+  text-transform: uppercase;
+  padding-bottom: 30px;
+}
+
+.banner h3 {
+  text-align: center;
+  margin: 0;
+  color: white;
+  padding-top: 10px;
+  font-size: 24px;
   font-weight: normal;
   text-transform: uppercase;
 }
@@ -105,11 +116,21 @@
   }
 
   .banner h1 {
-    font-size: 70px;
+    font-size: 50px;
   }
   .banner h2 {
+    font-size: 22px;
+  }
+
+  .banner h3 {
     font-size: 20px;
   }
+
+  .banner p{
+    font-size : 16px;
+  }
+
+
 
 }
 
@@ -119,11 +140,22 @@
     width: 75px;
   }
   .banner h1 {
-    font-size: 56px;
+    font-size: 35px;
   }
   .banner h2 {
-    font-size: 16px;
+    font-size: 14px;
   }
+
+  .banner h2 {
+    font-size: 14px;
+  }
+
+  .banner p{
+    font-size : 10px;
+  }
+
+
+
 }
 
 
