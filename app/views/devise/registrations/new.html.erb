@@ -1,43 +1,5 @@
-<div id='sign-up-form'>
-<h2>S'inscrire</h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <div class="label">
-    <%= f.label :email %>
-    </div>
-    <div class="field">
-    <%= f.text_field :email, required: true, autofocus: true, input_html: { autocomplete: "email" }, class: 'connection-input' %>
-    </div>
-    <div class="label">
-    <%= f.label :nom %>
-    </div>
-    <div class="field">
-    <%= f.text_field :name, required: true, autofocus: true, input_html: { autocomplete: "nom" }, class: 'connection-input' %>
-    </div>
-    <div class="label">
-    <%= f.label :mot_de_passe %>
-    </div>
-    <div class="field">
-    <%= f.password_field :password, required: true, input_html: { autocomplete: "new-password" }, class: 'connection-input' %>
-    </div>
-    <div class="label">
-    <%= f.label :mot_de_passe %>
-    </div>
-    <div class="field">
-    <%= f.password_field :password, required: true, input_html: { autocomplete: "new-password" }, class: 'connection-input' %>
-    </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Inscription", class: "ajouter" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-</div>
 
 <script type="text/javascript" language="JavaScript">
 <!--
