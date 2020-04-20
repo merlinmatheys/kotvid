@@ -12,19 +12,19 @@
     <%= f.text_field :email, required: true, autofocus: true, input_html: { autocomplete: "email" }, class: 'connection-input' %>
     </div>
     <div class="label">
-    <%= f.label :name %>
+    <%= f.label :nom %>
     </div>
     <div class="field">
     <%= f.text_field :name, required: true, autofocus: true, input_html: { autocomplete: "nom" }, class: 'connection-input' %>
     </div>
     <div class="label">
-    <%= f.label :password %>
+    <%= f.label :mot_de_passe %>
     </div>
     <div class="field">
     <%= f.password_field :password, required: true, input_html: { autocomplete: "new-password" }, class: 'connection-input' %>
     </div>
     <div class="label">
-    <%= f.label :password %>
+    <%= f.label :mot_de_passe %>
     </div>
     <div class="field">
     <%= f.password_field :password, required: true, input_html: { autocomplete: "new-password" }, class: 'connection-input' %>
@@ -32,7 +32,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Inscription" %>
+    <%= f.button :submit, "Inscription", class: "ajouter" %>
   </div>
 <% end %>
 
