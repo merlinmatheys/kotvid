@@ -38,3 +38,69 @@
 
 <%= render "devise/shared/links" %>
 </div>
+
+<script type="text/javascript" language="JavaScript">
+<!--
+function checkCheckBoxes(theForm) {
+  if (
+  theForm.CHECKBOX_1.checked == false &&
+  theForm.CHECKBOX_2.checked == false &&
+  theForm.CHECKBOX_3.checked == false)
+  {
+    alert ('You didn\'t choose any of the checkboxes!');
+    return false;
+  } else {
+    return true;
+  }
+}
+//-->
+</script>
+
+<div id='sign-up-form'>
+<h2>S'inscrire</h2>
+
+  <form class="simple_form new_user" id="new_user" novalidate="novalidate" action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="+z5eUY/FL7mRETq0vNO6HEQl9JL0M7vj/EcKWsuaIpTAl8C62WepenZ6bnixGXtrzCkMwBkE9KDlCYmOrRlxnA==" onsubmit="return checkCheckBoxes(this);">
+
+    <div class="form-inputs">
+      <div class="label">
+      <label class="email optional" for="user_email">Email</label>
+      </div>
+      <div class="field">
+      <input required="required" autofocus="autofocus" input_html="{:autocomplete=>&quot;email&quot;}" class="connection-input" type="text" value="" name="user[email]" id="user_email">
+      </div>
+      <div class="label">
+      <label class="string optional" for="user_nom">Nom</label>
+      </div>
+      <div class="field">
+      <input required="required" autofocus="autofocus" input_html="{:autocomplete=>&quot;nom&quot;}" class="connection-input" type="text" name="user[name]" id="user_name">
+      </div>
+      <div class="label">
+      <label class="string optional" for="user_mot_de_passe">Mot de passe</label>
+      </div>
+      <div class="field">
+      <input required="required" input_html="{:autocomplete=>&quot;new-password&quot;}" class="connection-input" type="password" name="user[password]" id="user_password">
+      </div>
+      <div class="label">
+      <label class="string optional" for="user_mot_de_passe">Mot de passe</label>
+      </div>
+      <div class="field">
+      <input required="required" input_html="{:autocomplete=>&quot;new-password&quot;}" class="connection-input" type="password" name="user[password]" id="user_password">
+      </div>
+    </div>
+    <p><input type="CHECKBOX" name="CHECKBOX_1" value="This..."> This...</p>
+    <p><input type="CHECKBOX" name="CHECKBOX_2" value="That..."> That...</p>
+
+    <div class="form-actions">
+      <input type="submit" name="commit" value="Inscription" class="btn ajouter" data-disable-with="Inscription">
+    </div>
+  </form>
+<%= render "devise/shared/links" %>
+</div>
+
+
+
+
+
+
+
+
