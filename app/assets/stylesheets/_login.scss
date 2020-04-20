@@ -15,6 +15,21 @@
   }
 }
 
+#checkbox {
+  transform: scale(1.5);
+}
+
+.flex-div {
+  display: flex;
+  .checkbox-div {
+    margin: 10px;
+  }
+
+  .conditions-div {
+    margin-top: 6px;
+  }
+}
+
 @media(max-width: 900px) {
   #sign-up-form {
     width: 70vw;

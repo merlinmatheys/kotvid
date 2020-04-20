@@ -1,4 +1,7 @@
 class PagesController < ApplicationController
-  def home
+  def rgpd
+  end
+
+  def cgu
   end
 end

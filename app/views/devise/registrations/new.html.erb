@@ -1,7 +1,7 @@
 <script type="text/javascript" language="JavaScript">
   function checkForm(form)
   {
-    if(!form.terms.checked || !form.terms_2.checked) {
+    if(!form.terms.checked) {
       alert("Please indicate that you accept the Terms and Conditions");
       form.terms.focus();
       return false;
@@ -17,32 +17,38 @@
 
     <div class="form-inputs">
       <div class="label">
-      <label class="email optional" for="user_email">Email</label>
+        <label class="email optional" for="user_email">Email</label>
       </div>
       <div class="field">
-      <input required="required" autofocus="autofocus" input_html="{:autocomplete=>&quot;email&quot;}" class="connection-input" type="text" value="" name="user[email]" id="user_email">
+        <input required="required" autofocus="autofocus" input_html="{:autocomplete=>&quot;email&quot;}" class="connection-input" type="text" value="" name="user[email]" id="user_email">
       </div>
       <div class="label">
-      <label class="string optional" for="user_nom">Nom</label>
+        <label class="string optional" for="user_nom">Nom</label>
       </div>
       <div class="field">
-      <input required="required" autofocus="autofocus" input_html="{:autocomplete=>&quot;nom&quot;}" class="connection-input" type="text" name="user[name]" id="user_name">
+        <input required="required" autofocus="autofocus" input_html="{:autocomplete=>&quot;nom&quot;}" class="connection-input" type="text" name="user[name]" id="user_name">
       </div>
       <div class="label">
-      <label class="string optional" for="user_mot_de_passe">Mot de passe</label>
+        <label class="string optional" for="user_mot_de_passe">Mot de passe</label>
       </div>
       <div class="field">
-      <input required="required" input_html="{:autocomplete=>&quot;new-password&quot;}" class="connection-input" type="password" name="user[password]" id="user_password">
+        <input required="required" input_html="{:autocomplete=>&quot;new-password&quot;}" class="connection-input" type="password" name="user[password]" id="user_password">
       </div>
       <div class="label">
-      <label class="string optional" for="user_mot_de_passe">Mot de passe</label>
+        <label class="string optional" for="user_mot_de_passe">Mot de passe</label>
       </div>
       <div class="field">
-      <input required="required" input_html="{:autocomplete=>&quot;new-password&quot;}" class="connection-input" type="password" name="user[password]" id="user_password">
+        <input required="required" input_html="{:autocomplete=>&quot;new-password&quot;}" class="connection-input" type="password" name="user[password]" id="user_password">
+      </div>
+      <div class="flex-div">
+        <div class="checkbox-div">
+          <input type="checkbox" name="terms" id="checkbox">
+        </div>
+        <div class="conditions-div">
+          <p> En cochant cette case, je reconnais avoir pris connaissance des <%= link_to "Conditions Générales d'Utilisation", cgu_path %> du site ainsi que sa <%= link_to "Politique de Confidentialité", rgpd_path %> et je les accepte.</p>
+        </div>
       </div>
     </div>
-    <p><input type="checkbox" name="terms"> I accept the <u>Terms and Conditions</u></p>
-    <p><input type="checkbox" name="terms_2"> I accept the <u>Terms and Conditions</u></p>
 
     <div class="form-actions">
       <input type="submit" name="commit" value="Inscription" class="btn ajouter" id="submit_button">
