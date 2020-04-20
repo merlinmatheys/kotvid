@@ -29,16 +29,43 @@
 
 
 .btn_link{
-  border:1px groove black;
-  color:red;
-  background-color: black;
-  opacity: 1;
+  text-decoration: none;
+  color:black;
   border-radius:30px;
-  padding: 5px 10px 5px 10px;
+  padding: 0px 10px 0px 10px;
+  font-size: 20px;
+
+
+  background-color: white;
+  opacity: 0.7;
+
+  .btn-ghost {
+    font-size: 18px;
+    width: 30%;
+  }
+
 
 }
 
-.btn_link:hover{
-  background-color: black;
-  opacity: 0.5;
+
+
+
+@media screen and (max-width: 900px) {
+
+  .btn_link{
+    font-size: 18px;
+
+  }
+
 }
+
+@media screen and (max-width: 700px) {
+  .btn_link{
+    font-size: 14px;
+
+  }
+
+}
+
+
+
