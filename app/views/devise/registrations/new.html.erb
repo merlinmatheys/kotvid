@@ -1,65 +1,21 @@
-<div id='sign-up-form'>
-<h2>S'inscrire</h2>
+<script>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <div class="label">
-    <%= f.label :email %>
-    </div>
-    <div class="field">
-    <%= f.text_field :email, required: true, autofocus: true, input_html: { autocomplete: "email" }, class: 'connection-input' %>
-    </div>
-    <div class="label">
-    <%= f.label :nom %>
-    </div>
-    <div class="field">
-    <%= f.text_field :name, required: true, autofocus: true, input_html: { autocomplete: "nom" }, class: 'connection-input' %>
-    </div>
-    <div class="label">
-    <%= f.label :mot_de_passe %>
-    </div>
-    <div class="field">
-    <%= f.password_field :password, required: true, input_html: { autocomplete: "new-password" }, class: 'connection-input' %>
-    </div>
-    <div class="label">
-    <%= f.label :mot_de_passe %>
-    </div>
-    <div class="field">
-    <%= f.password_field :password, required: true, input_html: { autocomplete: "new-password" }, class: 'connection-input' %>
-    </div>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Inscription", class: "ajouter" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-</div>
-
-<script type="text/javascript" language="JavaScript">
-<!--
-function checkCheckBoxes(theForm) {
-  if (
-  theForm.CHECKBOX_1.checked == false &&
-  theForm.CHECKBOX_2.checked == false &&
-  theForm.CHECKBOX_3.checked == false)
+  function checkForm(form)
   {
-    alert ('You didn\'t choose any of the checkboxes!');
-    return false;
-  } else {
+    if(!form.terms.checked || !form.terms_2.checked) {
+      alert("Please indicate that you accept the Terms and Conditions");
+      form.terms.focus();
+      return false;
+    }
     return true;
   }
-}
-//-->
+
 </script>
 
 <div id='sign-up-form'>
 <h2>S'inscrire</h2>
 
-  <form class="simple_form new_user" id="new_user" novalidate="novalidate" action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="+z5eUY/FL7mRETq0vNO6HEQl9JL0M7vj/EcKWsuaIpTAl8C62WepenZ6bnixGXtrzCkMwBkE9KDlCYmOrRlxnA==" onsubmit="return checkCheckBoxes(this);">
+  <form class="simple_form new_user" onsubmit="return checkForm(this);" id="new_user" novalidate="novalidate" action="/users" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" >
 
     <div class="form-inputs">
       <div class="label">
@@ -87,11 +43,11 @@ function checkCheckBoxes(theForm) {
       <input required="required" input_html="{:autocomplete=>&quot;new-password&quot;}" class="connection-input" type="password" name="user[password]" id="user_password">
       </div>
     </div>
-    <p><input type="CHECKBOX" name="CHECKBOX_1" value="This..."> This...</p>
-    <p><input type="CHECKBOX" name="CHECKBOX_2" value="That..."> That...</p>
+    <p><input type="checkbox" name="terms"> I accept the <u>Terms and Conditions</u></p>
+    <p><input type="checkbox" name="terms_2"> I accept the <u>Terms and Conditions</u></p>
 
     <div class="form-actions">
-      <input type="submit" name="commit" value="Inscription" class="btn ajouter" data-disable-with="Inscription">
+      <input type="submit" name="commit" value="Inscription" class="btn ajouter" id="submit_button">
     </div>
   </form>
 <%= render "devise/shared/links" %>
