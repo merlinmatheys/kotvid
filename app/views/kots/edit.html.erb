@@ -1,11 +1,11 @@
 <div id='sign-up-form'>
-<h2>Modifies ton kot!</h2>
+<h2>Modifie ton kot!</h2>
   <% if user_signed_in? %>
     <%= simple_form_for(@kot) do |f| %>
     <div class="form-inputs">
         <%= f.hidden_field :user_id, :value => current_user.id %>
       <div class="label">
-        <%= f.label :addresse %>
+        <%= f.label :adresse %>
       </div>
       <div class="field">
         <%= f.text_field :addresse, placeholder: 'Rue de la Ramée, 14/001, 1348 - Louvain-la-Neuve', class: 'connection-input' %>
@@ -23,7 +23,7 @@
         </datalist>
       </div>
       <div class="label">
-        <%= f.label :quartier %>
+        <%= f.label :quartier_ %>
       </div>
       <div class="field">
         <%= f.text_field :quartier, list: 'quartiers', class: 'connection-input' %>
@@ -36,16 +36,16 @@
         </datalist>
       </div>
       <div class="label">
-        <%= f.label :nombre_chambres %>
+        <%= f.label :nombre_de_chambres %>
       </div>
       <div class="field">
         <%= f.number_field :nombre_chambres, class: 'connection-input' %>
       </div>
       <div class="label">
-        <%= f.label :photos %>
+        <%# f.label :photos %>
       </div>
       <div class="field">
-        <%= f.input_field :photos, as: :file, input_html: { multiple: true }, class: 'photo-input' %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true }, class: 'photo-input' %>
       </div>
       <div class="form-actions">
         <%= f.button :submit, "Modifier", class: "ajouter" %>
