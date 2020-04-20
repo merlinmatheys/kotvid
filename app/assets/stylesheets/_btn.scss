@@ -29,10 +29,14 @@
 
 
 .btn_link{
-  color:red;
+   border:1px groove black;
+    color:red;
+    background-color: black;
+    opacity: 1;
+
 }
 
 .btn_link:hover{
-  background-color: white;
-  opacity: 0.3;
+  background-color: black;
+  opacity: 0.5;
 }
