@@ -22,7 +22,7 @@
 
     <div class="searchbar">
         <%= form_tag root_path, method: :get do %>
-          <%= text_field_tag :location, params[:location], placeholder: '   Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve', class: 'recherche' %>
+          <%= text_field_tag :location, params[:location], placeholder: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve', class: 'recherche' %>
           <%= submit_tag "🔍 Rechercher", class: 'btn-ghost none' %>
         <% end %>
     </div>
