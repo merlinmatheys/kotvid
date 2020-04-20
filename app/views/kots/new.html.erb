@@ -42,10 +42,10 @@
         <%= f.number_field :nombre_chambres, class: 'connection-input' %>
       </div>
       <div class="label">
-        <%= f.label :photos %>
+        <%# f.label :photos %>
       </div>
       <div class="field">
-        <%= f.input_field :photos, as: :file, input_html: { multiple: true }, class: 'photo-input' %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true }, class: 'photo-input' %>
       </div>
       <div class="form-actions">
         <%= f.button :submit, "Ajouter", class: "ajouter" %>
