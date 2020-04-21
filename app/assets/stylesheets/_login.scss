@@ -7,12 +7,21 @@
   }
   background-color: white;
   margin-top: 10vh;
-  padding: 7px 20px 0px 20px;
+  padding: 7px 20px 10px 20px;
   border-radius: 5px;
   box-shadow: 5px 5px 5px rgb(235, 235, 235);
   a {
     line-height: 30px;
   }
+}
+
+.etre-connecte {
+  text-align: center;
+}
+
+.btn-etre-connecte {
+  text-align: center;
+  margin: 20px;
 }
 
 #checkbox {
