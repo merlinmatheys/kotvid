@@ -5,3 +5,13 @@
 .submit-kot {
   color: red;
 }
+
+.photo-input {
+  display: none;
+}
+
+@media(max-width: 900px) {
+  .photo-input {
+    display: block;
+  }
+}

@@ -1,63 +1,74 @@
 <div id='sign-up-form'>
 <h2>Ajoute ton kot!</h2>
   <% if user_signed_in? %>
-    <%= simple_form_for(@kot) do |f| %>
-    <div class="form-inputs">
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-      <div class="label">
-        <%= f.label :adresse %>
+    <form class="simple_form new_kot" id="new_kot" novalidate="novalidate" enctype="multipart/form-data" action="/kots" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <div class="form-inputs">
+          <input value="2" type="hidden" name="kot[user_id]" id="kot_user_id">
+        <div class="label">
+          <label class="string optional" for="kot_adresse">Adresse</label>
+        </div>
+        <div class="field">
+          <input placeholder="Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve" class="connection-input" type="text" name="kot[addresse]" id="kot_addresse">
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_type_kot">Type kot</label>
+        </div>
+        <div class="field">
+          <input list="types" class="connection-input" type="text" name="kot[type_kot]" id="kot_type_kot">
+          <datalist id="types">
+            <option value="Kot UCL">
+            </option><option value="Kot privé">
+            </option><option value="Studio">
+            </option><option value="Appartement">
+          </option></datalist>
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_quartier_">Quartier</label>
+        </div>
+        <div class="field">
+          <input list="quartiers" class="connection-input" type="text" name="kot[quartier]" id="kot_quartier">
+          <datalist id="quartiers">
+            <option value="Biéreau">
+            </option><option value="Lauzelle">
+            </option><option value="Hocaille">
+            </option><option value="Centre">
+            </option><option value="Bruyères">
+          </option></datalist>
+        </div>
+        <div class="label">
+          <label class="integer optional" for="kot_nombre_chambres">Nombre chambres</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="number" name="kot[nombre_chambres]" id="kot_nombre_chambres">
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_propriétaire">Propriétaire</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="text" name="kot[agence]" id="kot_agence">
+        </div>
+        <div class="label">
+        </div>
+        <div class="field">
+          <div class="form-group file optional kot_photos"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
+        </div>
+        <div class="field">
+          <div class="form-group file optional kot_photos photo-input"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
+        </div>
+        <div class="field">
+          <div class="form-group file optional kot_photos photo-input"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
+        </div>
+        <div class="field">
+          <div class="form-group file optional kot_photos photo-input"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
+        </div>
+        <div class="field">
+          <div class="form-group file optional kot_photos photo-input"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
+        </div>
+        <div class="form-actions">
+          <input type="submit" name="commit" value="Ajouter" class="btn ajouter" data-disable-with="Ajouter">
+        </div>
       </div>
-      <div class="field">
-        <%= f.text_field :addresse, placeholder: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve', class: 'connection-input' %>
-      </div>
-      <div class="label">
-        <%= f.label :type_kot %>
-      </div>
-      <div class="field">
-        <%= f.text_field :type_kot, list: 'types', class: 'connection-input' %>
-        <datalist id="types">
-          <option value="Kot UCL">
-          <option value="Kot privé">
-          <option value="Studio">
-          <option value="Appartement">
-        </datalist>
-      </div>
-      <div class="label">
-        <%= f.label :quartier_ %>
-      </div>
-      <div class="field">
-        <%= f.text_field :quartier, list: 'quartiers', class: 'connection-input' %>
-        <datalist id="quartiers">
-          <option value="Biéreau">
-          <option value="Lauzelle">
-          <option value="Hocaille">
-          <option value="Centre">
-          <option value="Bruyères">
-        </datalist>
-      </div>
-      <div class="label">
-        <%= f.label :nombre_chambres %>
-      </div>
-      <div class="field">
-        <%= f.number_field :nombre_chambres, class: 'connection-input' %>
-      </div>
-      <div class="label">
-        <%= f.label :propriétaire %>
-      </div>
-      <div class="field">
-        <%= f.text_field :agence, class: 'connection-input' %>
-      </div>
-      <div class="label">
-        <%# f.label :photos %>
-      </div>
-      <div class="field">
-        <%= f.input :photos, as: :file, input_html: { multiple: true }, class: 'photo-input' %>
-      </div>
-      <div class="form-actions">
-        <%= f.button :submit, "Ajouter", class: "ajouter" %>
-      </div>
-    </div>
-    <% end %>
+    </form>
   <% else %>
     <p class="etre-connecte">Vous devez être connecté pour ajouter un kot 😢</p>
     <div class="btn-etre-connecte">
