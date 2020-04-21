@@ -50,7 +50,7 @@ class KotsController < ApplicationController
   private
 
   def kot_params
-    params.require(:kot).permit(:addresse, :quartier, :nombre_chambres, :user_id, :type_kot, photos: [])
+    params.require(:kot).permit(:addresse, :quartier, :nombre_chambres, :user_id, :type_kot, :agence, photos: [])
   end
 
 end
