@@ -47,6 +47,22 @@
         <div class="field">
           <input class="connection-input" type="text" name="kot[agence]" id="kot_agence">
         </div>
+
+        <legend class="col-form-label pt-0">Disponible</legend>
+        <fieldset class="form-group radio_buttons optional kot_disponible">
+          <input type="hidden" name="kot[disponible]" value="">
+          <div class="radio-buttons">
+            <div class="form-check">
+              <input class="form-check-input radio_buttons optional" type="radio" value="true" name="kot[disponible]" id="kot_disponible_true">
+              <label class="form-check-label collection_radio_buttons" for="kot_disponible_true">Oui</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input radio_buttons optional" readonly="readonly" type="radio" value="false" name="kot[disponible]" id="kot_disponible_false">
+              <label class="form-check-label collection_radio_buttons" for="kot_disponible_false">Non</label>
+            </div>
+          </div>
+        </fieldset>
+
         <div class="label">
         </div>
         <div class="field">

@@ -1,65 +1,92 @@
 <div id='sign-up-form'>
 <h2>Modifie ton kot!</h2>
   <% if user_signed_in? %>
-    <%= simple_form_for(@kot) do |f| %>
-    <div class="form-inputs">
-        <%= f.hidden_field :user_id, :value => current_user.id %>
-      <div class="label">
-        <%= f.label :adresse %>
+    <form class="simple_form edit_kot" id="edit_kot_<%= @kot.id %>" novalidate="novalidate" enctype="multipart/form-data" action="/kots/<%= @kot.id %>" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <div class="form-inputs">
+          <input value="2" type="hidden" name="kot[user_id]" id="kot_user_id">
+        <div class="label">
+          <label class="string optional" for="kot_adresse">Adresse</label>
+        </div>
+        <div class="field">
+          <input placeholder="Rue de la Ramée, 14/001, 1348 - Louvain-la-Neuve" class="connection-input" type="text" value="<%= @kot.addresse %>" name="kot[addresse]" id="kot_addresse">
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_type_kot">Type kot</label>
+        </div>
+        <div class="field">
+          <input list="types" class="connection-input" type="text" value="<%= @kot.type_kot %>" name="kot[type_kot]" id="kot_type_kot">
+          <datalist id="types">
+            <option value="Kot UCL">
+            </option><option value="Kot privé">
+            </option><option value="Studio">
+            </option><option value="Appartement">
+          </option></datalist>
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_quartier_">Quartier</label>
+        </div>
+        <div class="field">
+          <input list="quartiers" class="connection-input" type="text" value="<%= @kot.quartier %>" name="kot[quartier]" id="kot_quartier">
+          <datalist id="quartiers">
+            <option value="Biéreau">
+            </option><option value="Lauzelle">
+            </option><option value="Hocaille">
+            </option><option value="Centre">
+            </option><option value="Bruyères">
+          </option></datalist>
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_nombre_de_chambres">Nombre de chambres</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="number" value="<%= @kot.nombre_chambres %>" name="kot[nombre_chambres]" id="kot_nombre_chambres">
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_propriétaire">Propriétaire</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="text" value="<%= @kot.agence %>" name="kot[agence]" id="kot_agence">
+        </div>
+
+        <legend class="col-form-label pt-0">Disponible</legend>
+        <fieldset class="form-group radio_buttons optional kot_disponible">
+          <input type="hidden" name="kot[disponible]" value="<%= @kot.disponible %>">
+          <div class="radio-buttons">
+            <div class="form-check">
+              <input class="form-check-input radio_buttons optional" type="radio" value="true" name="kot[disponible]" id="kot_disponible_true">
+              <label class="form-check-label collection_radio_buttons" for="kot_disponible_true">Oui</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input radio_buttons optional" readonly="readonly" type="radio" value="false" name="kot[disponible]" id="kot_disponible_false">
+              <label class="form-check-label collection_radio_buttons" for="kot_disponible_false">Non</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="label">
+        </div>
+        <div class="field">
+          <div class="form-group file optional kot_photos"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
+        </div>
+        <div class="field">
+          <div class="form-group file optional kot_photos photo-input"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
+        </div>
+        <div class="field">
+          <div class="form-group file optional kot_photos photo-input"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
+        </div>
+        <div class="field">
+          <div class="form-group file optional kot_photos photo-input"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
+        </div>
+        <div class="field">
+          <div class="form-group file optional kot_photos photo-input"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
+        </div>
+        <div class="form-actions">
+          <input type="submit" name="commit" value="Modifier" class="btn ajouter" data-disable-with="Modifier">
+        </div>
       </div>
-      <div class="field">
-        <%= f.text_field :addresse, placeholder: 'Rue de la Ramée, 14/001, 1348 - Louvain-la-Neuve', class: 'connection-input' %>
-      </div>
-      <div class="label">
-        <%= f.label :type_kot %>
-      </div>
-      <div class="field">
-        <%= f.text_field :type_kot, list: 'types', class: 'connection-input' %>
-        <datalist id="types">
-          <option value="Kot UCL">
-          <option value="Kot privé">
-          <option value="Studio">
-          <option value="Appartement">
-        </datalist>
-      </div>
-      <div class="label">
-        <%= f.label :quartier_ %>
-      </div>
-      <div class="field">
-        <%= f.text_field :quartier, list: 'quartiers', class: 'connection-input' %>
-        <datalist id="quartiers">
-          <option value="Biéreau">
-          <option value="Lauzelle">
-          <option value="Hocaille">
-          <option value="Centre">
-          <option value="Bruyères">
-        </datalist>
-      </div>
-      <div class="label">
-        <%= f.label :nombre_de_chambres %>
-      </div>
-      <div class="field">
-        <%= f.number_field :nombre_chambres, class: 'connection-input' %>
-      </div>
-      <div class="label">
-        <%= f.label :propriétaire %>
-      </div>
-      <div class="field">
-        <%= f.text_field :agence, class: 'connection-input' %>
-      </div>
-      <div class="label">
-        <%# f.label :photos %>
-      </div>
-      <div class="field">
-        <%= f.input :photos, as: :file, input_html: { multiple: true }, class: 'photo-input' %>
-      </div>
-      <div class="form-actions">
-        <%= f.button :submit, "Modifier", class: "ajouter" %>
-      </div>
-    </div>
-    <% end %>
+    </form>
   <% else %>
-    <p>Vous devez être connecté pour ajouter un kot</p>
+    <p>Vous devez être connecté pour modifier un kot</p>
     <%= link_to "Se connecter", new_user_session_path, class: "active" %>
   <% end %>
 </div>

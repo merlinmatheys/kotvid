@@ -5,8 +5,10 @@ class KotsController < ApplicationController
     if params[:location].present?
       @kots = Kot.near(params[:location], 10000, order: :distance)
     else
-      all_kots = Kot.all
+      all_kots = Kot.where(disponible: nil) + Kot.where(disponible: true)
       @kots = all_kots.sort_by { |all_kots| all_kots[:addresse].capitalize }
+      kots_indisponibles = Kot.where(disponible: false)
+      @kots_indisponibles = kots_indisponibles.sort_by { |all_kots| all_kots[:addresse].capitalize }
     end
   end
 
@@ -50,7 +52,7 @@ class KotsController < ApplicationController
   private
 
   def kot_params
-    params.require(:kot).permit(:addresse, :quartier, :nombre_chambres, :user_id, :type_kot, :agence, photos: [])
+    params.require(:kot).permit(:addresse, :quartier, :nombre_chambres, :user_id, :type_kot, :agence, :disponible, photos: [])
   end
 
 end

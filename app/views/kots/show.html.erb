@@ -16,21 +16,35 @@
   </div>
 
   <div class="info-box">
-    <div>
-    <p class="blue-title">Type:</p>
-    <p><%= @kot.type_kot %></p>
+    <div class="info-box-haut">
+      <div>
+      <p class="blue-title">Type:</p>
+      <p><%= @kot.type_kot %></p>
+      </div>
+      <div>
+      <p class="blue-title">Quartier:</p>
+      <p><%= @kot.quartier %></p>
+      </div>
+      <div>
+      <p class="blue-title">Propriétaire:</p>
+      <p><%= @kot.agence %></p>
+      </div>
     </div>
-    <div>
-    <p class="blue-title">Quartier:</p>
-    <p><%= @kot.quartier %></p>
-    </div>
-    <div>
-    <p class="blue-title">Propriétaire:</p>
-    <p><%= @kot.agence %></p>
-    </div>
-    <div>
-    <p class="blue-title">Nb chambres commu:</p>
-    <p><%= @kot.nombre_chambres %></p>
+    <div class="info-box-bas">
+      <div>
+      <p class="blue-title">Disponible:</p>
+      <% if @kot.disponible %>
+        <p>Oui</p>
+      <% elsif @kot.disponible == nil %>
+        <p>Non précisé</p>
+      <% else %>
+        <p>Non</p>
+      <% end %>
+      </div>
+      <div>
+      <p class="blue-title">Nb chambres commu:</p>
+      <p><%= @kot.nombre_chambres %></p>
+      </div>
     </div>
   </div>
 
