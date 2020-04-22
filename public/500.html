@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
+  <title>Erreur 500</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
   .rails-default-error-page {
@@ -51,11 +51,42 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+  .container500{
+    border: 3px gray solid;
+    background-color: white;
+    margin: 5vh 15vh 0 15vh;
+  }
+  .title500{
+    text-align: center;
+  }
+
   </style>
 </head>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/500.html -->
+
+
+<body>
+
+  <div class="container500">
+    <div><h1 class="title500">Erreur 500, aïe qu'est-ce qui est encore cassé?</h1></div>
+    <p style="text-align: center;">La liste des kots est affichées <a href="https://kotvid.herokuapp.com/">ici</a>.</p>
+    <img src="404.png" style="max-width: 100%; height: auto;">
+
+
+  </div>
+  
+
+
+
+
+
+</body>
+
+
+
+
+<!-- <body class="rails-default-error-page">
+  This file lives in public/500.html 
   <div class="dialog">
     <div>
       <h1>We're sorry, but something went wrong.</h1>
@@ -63,4 +94,4 @@
     <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
-</html>
+</html>-->

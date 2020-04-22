@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The change you wanted was rejected (422)</title>
+  <title>Erreur 422</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
   .rails-default-error-page {
@@ -51,11 +51,39 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+  .container422{
+    border: 3px gray solid;
+    background-color: white;
+    margin: 5vh 15vh 0 15vh;
+  }
+  .title422{
+    text-align: center;
+  }
+
+
+
   </style>
 </head>
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/422.html -->
+
+<body>
+
+  <div class="container422">
+    <div><h1 class="title422">Erreur 422, données invalides</h1></div>
+    <p style="text-align: center;">La liste des kots est affichées <a href="https://kotvid.herokuapp.com/">ici</a>.</p>
+<img src="404.png" style="max-width: 100%; height: auto;">
+
+  </div>
+  
+
+
+
+
+
+</body>
+
+<!--<body class="rails-default-error-page">
+  This file lives in public/422.html 
   <div class="dialog">
     <div>
       <h1>The change you wanted was rejected.</h1>
@@ -64,4 +92,4 @@
     <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
-</html>
+</html>-->
