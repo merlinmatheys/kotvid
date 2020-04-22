@@ -21,7 +21,7 @@
       <%= link_to "Accueil", root_path, class: "left" %>
       <%= link_to "Ajoute ton kot", new_kot_path, class: "left" %>
       <% if user_signed_in? %>
-      <%= link_to "Se déconnecter", destroy_user_session_path, class: "right", data: {:confirm => 'Souhaitez vous vous déconnecter ?'}, :method => :delete %>
+      <%= link_to "Déconnexion", destroy_user_session_path, class: "right", data: {:confirm => 'Souhaitez vous vous déconnecter ?'}, :method => :delete %>
       <% else %>
       <%= link_to "Se connecter", new_user_session_path, class: "right" %>
       <% end %>

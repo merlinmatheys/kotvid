@@ -37,18 +37,27 @@
       <td class="tdkot gras none">Nb chambres</td>
       <td class="tdkot gras none">Propriétaire</td>
   		<td class="tdkot gras">En savoir plus</td>
-    	</tr>
+    </tr>
     <% @kots.each do |kot| %>
-
-    	<tr>
-        <td class="tdkot"><%= kot.quartier %></td>
-        <td class="tdkot"><%= kot.addresse.capitalize %></td>
-    		<td class="tdkot none"><%= kot.type_kot %></td>
-        <td class="tdkot none"><%= kot.nombre_chambres %></td>
-        <td class="tdkot none"><%= kot.agence %></td>
-        <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
-    	</tr>
-    <% end %>
+      	<tr>
+          <td class="tdkot"><%= kot.quartier %></td>
+          <td class="tdkot"><%= kot.addresse.capitalize %></td>
+      		<td class="tdkot none"><%= kot.type_kot %></td>
+          <td class="tdkot none"><%= kot.nombre_chambres %></td>
+          <td class="tdkot none"><%= kot.agence %></td>
+          <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
+      	</tr>
+      <% end %>
+      <% @kots_indisponibles.each do |kot| %>
+        <tr>
+          <td class="tdkot" id="red"><%= kot.quartier %></td>
+          <td class="tdkot" id="red"><%= kot.addresse.capitalize %></td>
+          <td class="tdkot none" id="red"><%= kot.type_kot %></td>
+          <td class="tdkot none" id="red"><%= kot.nombre_chambres %></td>
+          <td class="tdkot none" id="red"><%= kot.agence %></td>
+          <td class="tdkot" id="red"><%= link_to "Détails", kot_path(kot) %></td>
+        </tr>
+      <% end %>
   </table>
 </div>
 
@@ -61,12 +70,7 @@
     <p>Chausée de Boondael, n° 447, Ixelles 1050, Belgium</p>
     <p>Email: kotvidlln@gmail.com</p>
     <p>Téléphone: +32 492 63 87 10</p>
-
   </div>
-
-
-
-
 </div>
 
 
