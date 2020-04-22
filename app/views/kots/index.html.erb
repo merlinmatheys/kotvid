@@ -38,25 +38,52 @@
       <td class="tdkot gras none">Propriétaire</td>
   		<td class="tdkot gras">En savoir plus</td>
     </tr>
-    <% @kots.each do |kot| %>
-      	<tr>
-          <td class="tdkot"><%= kot.quartier %></td>
-          <td class="tdkot"><%= kot.addresse.capitalize %></td>
-      		<td class="tdkot none"><%= kot.type_kot %></td>
-          <td class="tdkot none"><%= kot.nombre_chambres %></td>
-          <td class="tdkot none"><%= kot.agence %></td>
-          <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
-      	</tr>
+    <% if @kots %>
+        <% @kots.each do |kot| %>
+        	<tr>
+            <td class="tdkot"><%= kot.quartier %></td>
+            <td class="tdkot"><%= kot.addresse.capitalize %></td>
+        		<td class="tdkot none"><%= kot.type_kot %></td>
+            <td class="tdkot none"><%= kot.nombre_chambres %></td>
+            <td class="tdkot none"><%= kot.agence %></td>
+            <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
+        	</tr>
+        <% end %>
       <% end %>
-      <% @kots_indisponibles.each do |kot| %>
-        <tr>
-          <td class="tdkot" id="red"><%= kot.quartier %></td>
-          <td class="tdkot" id="red"><%= kot.addresse.capitalize %></td>
-          <td class="tdkot none" id="red"><%= kot.type_kot %></td>
-          <td class="tdkot none" id="red"><%= kot.nombre_chambres %></td>
-          <td class="tdkot none" id="red"><%= kot.agence %></td>
-          <td class="tdkot" id="red"><%= link_to "Détails", kot_path(kot) %></td>
-        </tr>
+      <% if @kots_indisponibles %>
+        <% @kots_indisponibles.each do |kot| %>
+          <tr>
+            <td class="tdkot" id="red"><%= kot.quartier %></td>
+            <td class="tdkot" id="red"><%= kot.addresse.capitalize %></td>
+            <td class="tdkot none" id="red"><%= kot.type_kot %></td>
+            <td class="tdkot none" id="red"><%= kot.nombre_chambres %></td>
+            <td class="tdkot none" id="red"><%= kot.agence %></td>
+            <td class="tdkot" id="red"><%= link_to "Détails", kot_path(kot) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+      <% if @kots_triés %>
+        <% @kots_triés.each do |kot| %>
+          <% if kot.disponible == false %>
+            <tr>
+              <td class="tdkot" id="red"><%= kot.quartier %></td>
+              <td class="tdkot" id="red"><%= kot.addresse.capitalize %></td>
+              <td class="tdkot none" id="red"><%= kot.type_kot %></td>
+              <td class="tdkot none" id="red"><%= kot.nombre_chambres %></td>
+              <td class="tdkot none" id="red"><%= kot.agence %></td>
+              <td class="tdkot" id="red"><%= link_to "Détails", kot_path(kot) %></td>
+            </tr>
+          <% else %>
+            <tr>
+              <td class="tdkot"><%= kot.quartier %></td>
+              <td class="tdkot"><%= kot.addresse.capitalize %></td>
+              <td class="tdkot none"><%= kot.type_kot %></td>
+              <td class="tdkot none"><%= kot.nombre_chambres %></td>
+              <td class="tdkot none"><%= kot.agence %></td>
+              <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
+            </tr>
+          <% end %>
+        <% end %>
       <% end %>
   </table>
 </div>

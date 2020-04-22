@@ -3,12 +3,13 @@ class KotsController < ApplicationController
 
   def index
     if params[:location].present?
-      @kots = Kot.near(params[:location], 10000, order: :distance)
+      # @kots = Kot.near(params[:location], 10000, order: :distance)
+      @kots_triés = Kot.near(params[:location], 10000, order: :distance)
     else
       all_kots = Kot.where(disponible: nil) + Kot.where(disponible: true)
       @kots = all_kots.sort_by { |all_kots| all_kots[:addresse].capitalize }
       kots_indisponibles = Kot.where(disponible: false)
-      @kots_indisponibles = kots_indisponibles.sort_by { |all_kots| all_kots[:addresse].capitalize }
+      @kots_indisponibles = kots_indisponibles.sort_by { |kots_indisponibles| kots_indisponibles[:addresse].capitalize }
     end
   end
 
