@@ -10,7 +10,7 @@ class KotsController < ApplicationController
         @kots = Kot.near(params[:search][:location_search], 10000, order: :distance).where(disponible: true, type_kot: params[:search][:type_kot_search]) + Kot.where(disponible: nil, type_kot: params[:search][:type_kot_search])
 
       elsif params[:search][:quartier_search].present? && params[:search][:location_search].present?
-        @kots = Kot.near(params[:search][:location_search], 10000, order: :distance).where(disponible: true, type_kot: params[:search][:quartier_search]) + Kot.where(disponible: nil, type_kot: params[:search][:quartier_search])
+        @kots = Kot.near(params[:search][:location_search], 10000, order: :distance).where(disponible: true, quartier: params[:search][:quartier_search]) + Kot.where(disponible: nil, quartier: params[:search][:quartier_search])
 
       elsif params[:search][:quartier_search].present? && params[:search][:type_kot_search].present?
         all_kots_1 = Kot.where(disponible: true, quartier: params[:search][:quartier_search], type_kot: params[:search][:type_kot_search]) + Kot.where(disponible: nil, quartier: params[:search][:quartier_search], type_kot: params[:search][:type_kot_search])
