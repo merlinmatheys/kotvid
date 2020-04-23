@@ -4,45 +4,33 @@ class KotsController < ApplicationController
   def index
     if params[:search].present?
       if params[:search][:quartier_search].present? && params[:search][:type_kot_search].present? && params[:search][:location_search].present?
-        all_kots_1 = Kot.where(disponible: true, quartier: params[:search][:quartier_search], type_kot: params[:search][:type_kot_search]) + Kot.where(disponible: nil, quartier: params[:search][:quartier_search], type_kot: params[:search][:type_kot_search])
-        all_kots_2 = all_kots_1.near(params[:search][:location_search], 10000, order: :distance)
-        @kots = all_kots_2
+        @kots = Kot.near(params[:search][:location_search], 10000, order: :distance).where(disponible: true, quartier: params[:search][:quartier_search], type_kot: params[:search][:type_kot_search]) + Kot.where(disponible: nil, quartier: params[:search][:quartier_search], type_kot: params[:search][:type_kot_search])
 
       elsif params[:search][:type_kot_search].present? && params[:search][:location_search].present?
-        all_kots_1 = Kot.where(disponible: true, type_kot: params[:search][:type_kot_search]) + Kot.where(disponible: nil, type_kot: params[:search][:type_kot_search])
-        all_kots_2 = all_kots_1.near(params[:search][:location_search], 10000, order: :distance)
-        @kots = all_kots_2
+        @kots = Kot.near(params[:search][:location_search], 10000, order: :distance).where(disponible: true, type_kot: params[:search][:type_kot_search]) + Kot.where(disponible: nil, type_kot: params[:search][:type_kot_search])
 
       elsif params[:search][:quartier_search].present? && params[:search][:location_search].present?
-        all_kots_1 = Kot.where(disponible: true, type_kot: params[:search][:quartier_search]) + Kot.where(disponible: nil, type_kot: params[:search][:quartier_search])
-        all_kots_2 = all_kots_1.near(params[:search][:location_search], 10000, order: :distance)
-        @kots = all_kots_2
+        @kots = Kot.near(params[:search][:location_search], 10000, order: :distance).where(disponible: true, type_kot: params[:search][:quartier_search]) + Kot.where(disponible: nil, type_kot: params[:search][:quartier_search])
 
       elsif params[:search][:quartier_search].present? && params[:search][:type_kot_search].present?
         all_kots_1 = Kot.where(disponible: true, quartier: params[:search][:quartier_search], type_kot: params[:search][:type_kot_search]) + Kot.where(disponible: nil, quartier: params[:search][:quartier_search], type_kot: params[:search][:type_kot_search])
-        all_kots_2 = all_kots_1.sort_by { |all_kots| all_kots[:addresse].capitalize }
-        @kots = all_kots_2
+        @kots = all_kots_1.sort_by { |all_kots| all_kots[:addresse].capitalize }
 
       elsif params[:search][:location_search].present?
-        all_kots_1 = Kot.near(params[:search][:location_search], 10000, order: :distance)
-        @kots = all_kots_1
+        @kots = Kot.near(params[:search][:location_search], 10000, order: :distance)
 
       elsif params[:search][:type_kot_search].present?
-        all_kots_1 = Kot.where(disponible: true, type_kot: params[:search][:type_kot_search]) + Kot.where(disponible: nil, type_kot: params[:search][:type_kot_search])
-        @kots = all_kots_1
+        @kots = Kot.where(disponible: true, type_kot: params[:search][:type_kot_search]) + Kot.where(disponible: nil, type_kot: params[:search][:type_kot_search])
 
       elsif params[:search][:quartier_search].present?
-        all_kots_1 = Kot.where(disponible: true, quartier: params[:search][:quartier_search]) + Kot.where(disponible: nil, quartier: params[:search][:quartier_search])
-        @kots = all_kots_1
+        @kots = Kot.where(disponible: true, quartier: params[:search][:quartier_search]) + Kot.where(disponible: nil, quartier: params[:search][:quartier_search])
 
       else
-        all_kots_1 = Kot.all.sort_by { |all_kots| all_kots[:addresse].capitalize }
-        @kots = all_kots_1
+        @kots = Kot.all.sort_by { |all_kots| all_kots[:addresse].capitalize }
         @kots_indisponibles = Kot.where(disponible: false).sort_by { |kots_indisponibles| kots_indisponibles[:addresse].capitalize }
       end
     else
-      all_kots_1 = Kot.all.sort_by { |all_kots| all_kots[:addresse].capitalize }
-      @kots = all_kots_1
+      @kots = Kot.all.sort_by { |all_kots| all_kots[:addresse].capitalize }
       @kots_indisponibles = Kot.where(disponible: false).sort_by { |kots_indisponibles| kots_indisponibles[:addresse].capitalize }
     end
   end

@@ -73,10 +73,17 @@
       </div>
     <% end %>
   <% end %>
+
   <% if @kots_indisponibles %>
     <div class="diviseur-kots">
       <div class="horizontal-line"></div>
       <p>Logements qui ne sont plus disponibles</p>
+    </div>
+  <% end %>
+
+  <% if @kots == [] %>
+    <div class="diviseur-kots">
+      <p>Aucun logement ne correspond à vos critères 😢</p>
     </div>
   <% end %>
 
