@@ -4,88 +4,164 @@
     <img class="logo"src="logo_rond.png" alt="logo kotvid">
     </div>
     <div class="banner-titre">
-      <h1>VISITE TON KOT</h1>
-    </div>
-
-    <div class="banner-sous-titre">
-      <h2>Malgré le confinement</h2>
+      <h1>Bienvenue sur KotVid</h1>
     </div>
 
     <div class="banner-bouton">
       <h3>Tu veux rendre service à la communauté ? </br><%= link_to "Ajoute ton kot", new_kot_path, class: 'btn_link btn-ghost' %></h3>
     </div>
 
-
-
-
     <div class="searchbar">
-        <%= form_tag root_path, method: :get do %>
-          <%= text_field_tag :location, params[:location], placeholder: 'Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve', class: 'recherche' %>
-          <%= submit_tag "🔍 Rechercher", class: 'btn-ghost none' %>
-        <% end %>
+      <form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get">
+        <div class="search-index">
+          <div class="search-index-haut">
+            <select placeholder="Quartier" name="search[quartier_search]" id="search_quartier_search">
+                <option value="" disabled selected>Quartier</option>
+                <option value="Biéreau">Biéreau</option>
+                <option value="Lauzelle">Lauzelle</option>
+                <option value="Hocaille">Hocaille</option>
+                <option value="Centre">Centre</option>
+                <option value="Bruyères">Bruyères</option>
+            </select>
+
+            <select placeholder="Type de kot" name="search[type_kot_search]" id="search_type_kot_search">
+                <option value="" disabled selected>Type de logement</option>
+                <option value="Kot UCL">Kot UCL</option>
+                <option value="Kot privé">Kot privé</option>
+                <option value="Appartement">Appartement</option>
+                <option value="Studio">Studio</option>
+            </select>
+            </div>
+            <div class="search-index-milieu">
+              <input placeholder="Addresse complète" type="text" name="search[location_search]" id="search_location_search">
+            </div>
+            <div class="search-index-bas">
+              <input type="submit" name="commit" class="btn-ghost none" value="🔍 Rechercher" data-disable-with="🔍 Rechercher">
+            </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
 
+<div class="kot-index-list">
+  <% if @kots %>
+    <% @kots.each do |kot| %>
+      <div class="kot-index-card blue-card">
+        <%= link_to content_tag(:span), kot_path(kot) %>
+        <div class="kot-index-card-left">
+          <div class="kot-index-card-left-top">
+            <p><%= kot.addresse %></p>
+            <p><%= kot.agence %></p>
+          </div>
+          <div class="kot-index-card-left-bottom">
+            <% if kot.quartier != nil %>
+              <p>Quartier: <%= kot.quartier %></p>
+            <% end %>
+            <% if kot.type_kot != nil %>
+              <p><%= kot.type_kot %></p>
+            <% end %>
+            <% if kot.nombre_chambres != nil %>
+              <p>Commu de <%= kot.nombre_chambres %> personnes</p>
+            <% end %>
+          </div>
+        </div>
+        <div class="kot-index-card-right">
+          <p class="nombre-photos"><%= kot.photos.count %></p>
+          <p><i class="fas fa-camera nav-link-index"></i></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 
-<div class="container_list">
-  <table>
-  	<tr>
-      <td class="tdkot gras">Quartier</td>
-      <td class="tdkot gras">Adresse</td>
-  		<td class="tdkot gras none">Type de logement</td>
-      <td class="tdkot gras none">Nb chambres</td>
-      <td class="tdkot gras none">Propriétaire</td>
-  		<td class="tdkot gras">En savoir plus</td>
-    </tr>
-    <% if @kots %>
-        <% @kots.each do |kot| %>
-        	<tr>
-            <td class="tdkot"><%= kot.quartier %></td>
-            <td class="tdkot"><%= kot.addresse.capitalize %></td>
-        		<td class="tdkot none"><%= kot.type_kot %></td>
-            <td class="tdkot none"><%= kot.nombre_chambres %></td>
-            <td class="tdkot none"><%= kot.agence %></td>
-            <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
-        	</tr>
-        <% end %>
+  <div class="diviseur-kots">
+    <div class="horizontal-line"></div>
+    <p>Logements qui ne sont plus disponibles</p>
+  </div>
+
+  <% if @kots_indisponibles %>
+    <% @kots_indisponibles.each do |kot| %>
+      <div class="kot-index-card red-card">
+        <%= link_to content_tag(:span), kot_path(kot) %>
+        <div class="kot-index-card-left">
+          <div class="kot-index-card-left-top">
+            <p><%= kot.addresse %></p>
+            <p><%= kot.agence %></p>
+          </div>
+          <div class="kot-index-card-left-bottom">
+            <% if kot.quartier != nil %>
+              <p>Quartier: <%= kot.quartier %></p>
+            <% end %>
+            <% if kot.type_kot != nil %>
+              <p><%= kot.type_kot %></p>
+            <% end %>
+            <% if kot.nombre_chambres != nil %>
+              <p>Commu de <%= kot.nombre_chambres %> personnes</p>
+            <% end %>
+          </div>
+        </div>
+        <div class="kot-index-card-right">
+          <p class="nombre-photos"><%= kot.photos.count %></p>
+          <p><i class="fas fa-camera nav-link-index"></i></p>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <% if @kots_triés %>
+    <% @kots_triés.each do |kot| %>
+      <% if kot.disponible == false %>
+        <div class="kot-index-card red-card">
+          <%= link_to content_tag(:span), kot_path(kot) %>
+          <div class="kot-index-card-left">
+            <div class="kot-index-card-left-top">
+              <p><%= kot.addresse %></p>
+              <p><%= kot.agence %></p>
+            </div>
+            <div class="kot-index-card-left-bottom">
+              <% if kot.quartier != nil %>
+                <p>Quartier: <%= kot.quartier %></p>
+              <% end %>
+              <% if kot.type_kot != nil %>
+                <p><%= kot.type_kot %></p>
+              <% end %>
+              <% if kot.nombre_chambres != nil %>
+                <p>Commu de <%= kot.nombre_chambres %> personnes</p>
+              <% end %>
+            </div>
+          </div>
+          <div class="kot-index-card-right">
+            <p class="nombre-photos"><%= kot.photos.count %></p>
+            <p><i class="fas fa-camera nav-link-index"></i></p>
+          </div>
+        </div>
+      <% else %>
+        <div class="kot-index-card blue-card">
+          <%= link_to content_tag(:span), kot_path(kot) %>
+          <div class="kot-index-card-left">
+            <div class="kot-index-card-left-top">
+              <p><%= kot.addresse %></p>
+              <p><%= kot.agence %></p>
+            </div>
+            <div class="kot-index-card-left-bottom">
+              <% if kot.quartier != nil %>
+                <p>Quartier: <%= kot.quartier %></p>
+              <% end %>
+              <% if kot.type_kot != nil %>
+                <p><%= kot.type_kot %></p>
+              <% end %>
+              <% if kot.nombre_chambres != nil %>
+                <p>Commu de <%= kot.nombre_chambres %> personnes</p>
+              <% end %>
+            </div>
+          </div>
+          <div class="kot-index-card-right">
+            <p class="nombre-photos"><%= kot.photos.count %></p>
+            <p><i class="fas fa-camera nav-link-index"></i></p>
+          </div>
+        </div>
       <% end %>
-      <% if @kots_indisponibles %>
-        <% @kots_indisponibles.each do |kot| %>
-          <tr>
-            <td class="tdkot" id="red"><%= kot.quartier %></td>
-            <td class="tdkot" id="red"><%= kot.addresse.capitalize %></td>
-            <td class="tdkot none" id="red"><%= kot.type_kot %></td>
-            <td class="tdkot none" id="red"><%= kot.nombre_chambres %></td>
-            <td class="tdkot none" id="red"><%= kot.agence %></td>
-            <td class="tdkot" id="red"><%= link_to "Détails", kot_path(kot) %></td>
-          </tr>
-        <% end %>
-      <% end %>
-      <% if @kots_triés %>
-        <% @kots_triés.each do |kot| %>
-          <% if kot.disponible == false %>
-            <tr>
-              <td class="tdkot" id="red"><%= kot.quartier %></td>
-              <td class="tdkot" id="red"><%= kot.addresse.capitalize %></td>
-              <td class="tdkot none" id="red"><%= kot.type_kot %></td>
-              <td class="tdkot none" id="red"><%= kot.nombre_chambres %></td>
-              <td class="tdkot none" id="red"><%= kot.agence %></td>
-              <td class="tdkot" id="red"><%= link_to "Détails", kot_path(kot) %></td>
-            </tr>
-          <% else %>
-            <tr>
-              <td class="tdkot"><%= kot.quartier %></td>
-              <td class="tdkot"><%= kot.addresse.capitalize %></td>
-              <td class="tdkot none"><%= kot.type_kot %></td>
-              <td class="tdkot none"><%= kot.nombre_chambres %></td>
-              <td class="tdkot none"><%= kot.agence %></td>
-              <td class="tdkot"><%= link_to "Détails", kot_path(kot) %></td>
-            </tr>
-          <% end %>
-        <% end %>
-      <% end %>
-  </table>
+    <% end %>
+  <% end %>
 </div>
 
 
