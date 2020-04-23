@@ -17,7 +17,6 @@
   text-align: center;
   width: 70%;
   padding: 5px;
-
   border-radius: 30px;
   opacity: 0.8;
   .recherche {
@@ -30,7 +29,17 @@
   .btn-ghost {
     font-size: 18px;
     width: 30%;
-    background-color: rgb(237, 239, 234);
+    background-color: -internal-light-dark-color(white, black);
+    opacity: 1;
+  }
+  .btn-ghost:hover {
+    opacity: 0.85;
+  }
+}
+
+@media(max-width: 700px) {
+  .searchbar {
+    width: 90%;
   }
 }
 

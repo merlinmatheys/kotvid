@@ -59,10 +59,10 @@
               <p>Quartier: <%= kot.quartier %></p>
             <% end %>
             <% if kot.type_kot != nil %>
-              <p><%= kot.type_kot %></p>
+              <p id="display-none-smartphone"><%= kot.type_kot %></p>
             <% end %>
             <% if kot.nombre_chambres != nil %>
-              <p>Commu de <%= kot.nombre_chambres %> personnes</p>
+              <p id="display-none-smartphone">Commu de <%= kot.nombre_chambres %> personnes</p>
             <% end %>
           </div>
         </div>
@@ -73,11 +73,12 @@
       </div>
     <% end %>
   <% end %>
-
-  <div class="diviseur-kots">
-    <div class="horizontal-line"></div>
-    <p>Logements qui ne sont plus disponibles</p>
-  </div>
+  <% if @kots_indisponibles %>
+    <div class="diviseur-kots">
+      <div class="horizontal-line"></div>
+      <p>Logements qui ne sont plus disponibles</p>
+    </div>
+  <% end %>
 
   <% if @kots_indisponibles %>
     <% @kots_indisponibles.each do |kot| %>
