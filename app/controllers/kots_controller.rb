@@ -2,14 +2,48 @@ class KotsController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    if params[:location].present?
-      # @kots = Kot.near(params[:location], 10000, order: :distance)
-      @kots_triés = Kot.near(params[:location], 10000, order: :distance)
+    if params[:search].present?
+      if params[:search][:quartier_search].present? && params[:search][:type_kot_search].present? && params[:search][:location_search].present?
+        all_kots_1 = Kot.where(disponible: true, quartier: params[:search][:quartier_search], type_kot: params[:search][:type_kot_search])
+        all_kots_2 = all_kots_1.near(params[:search][:location_search], 10000, order: :distance)
+        @kots = all_kots_2
+
+      elsif params[:search][:type_kot_search].present? && params[:search][:location_search].present?
+        all_kots_1 = Kot.where(disponible: true, type_kot: params[:search][:type_kot_search])
+        all_kots_2 = all_kots_1.near(params[:search][:location_search], 10000, order: :distance)
+        @kots = all_kots_2
+
+      elsif params[:search][:quartier_search].present? && params[:search][:location_search].present?
+        all_kots_1 = Kot.where(disponible: true, type_kot: params[:search][:quartier_search])
+        all_kots_2 = all_kots_1.near(params[:search][:location_search], 10000, order: :distance)
+        @kots = all_kots_2
+
+      elsif params[:search][:quartier_search].present? && params[:search][:type_kot_search].present?
+        all_kots_1 = Kot.where(disponible: true, quartier: params[:search][:quartier_search], type_kot: params[:search][:type_kot_search])
+        all_kots_2 = all_kots_1.sort_by { |all_kots| all_kots[:addresse].capitalize }
+        @kots = all_kots_2
+
+      elsif params[:search][:location_search].present?
+        all_kots_1 = Kot.near(params[:search][:location_search], 10000, order: :distance)
+        @kots = all_kots_1
+
+      elsif params[:search][:type_kot_search].present?
+        all_kots_1 = Kot.where(disponible: true, type_kot: params[:search][:type_kot_search])
+        @kots = all_kots_1
+
+      elsif params[:search][:quartier_search].present?
+        all_kots_1 = Kot.where(disponible: true, quartier: params[:search][:quartier_search])
+        @kots = all_kots_1
+
+      else
+        all_kots_1 = Kot.all.sort_by { |all_kots| all_kots[:addresse].capitalize }
+        @kots = all_kots_1
+        @kots_indisponibles = Kot.where(disponible: false).sort_by { |kots_indisponibles| kots_indisponibles[:addresse].capitalize }
+      end
     else
-      all_kots = Kot.where(disponible: nil) + Kot.where(disponible: true)
-      @kots = all_kots.sort_by { |all_kots| all_kots[:addresse].capitalize }
-      kots_indisponibles = Kot.where(disponible: false)
-      @kots_indisponibles = kots_indisponibles.sort_by { |kots_indisponibles| kots_indisponibles[:addresse].capitalize }
+      all_kots_1 = Kot.all.sort_by { |all_kots| all_kots[:addresse].capitalize }
+      @kots = all_kots_1
+      @kots_indisponibles = Kot.where(disponible: false).sort_by { |kots_indisponibles| kots_indisponibles[:addresse].capitalize }
     end
   end
 
