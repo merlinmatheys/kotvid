@@ -26,11 +26,13 @@ class KotsController < ApplicationController
         @kots = Kot.where(disponible: true, quartier: params[:search][:quartier_search]) + Kot.where(disponible: nil, quartier: params[:search][:quartier_search])
 
       else
-        @kots = Kot.all.sort_by { |all_kots| all_kots[:addresse].capitalize }
+        all_kots = Kot.where(disponible: true) + Kot.where(disponible: nil)
+        @kots = all_kots.sort_by { |all_kots| all_kots[:addresse] }
         @kots_indisponibles = Kot.where(disponible: false).sort_by { |kots_indisponibles| kots_indisponibles[:addresse].capitalize }
       end
     else
-      @kots = Kot.all.sort_by { |all_kots| all_kots[:addresse].capitalize }
+      all_kots = Kot.where(disponible: true) + Kot.where(disponible: nil)
+      @kots = all_kots.sort_by { |all_kots| all_kots[:addresse] }
       @kots_indisponibles = Kot.where(disponible: false).sort_by { |kots_indisponibles| kots_indisponibles[:addresse].capitalize }
     end
   end
