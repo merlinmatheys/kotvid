@@ -73,6 +73,77 @@ class KotsController < ApplicationController
     end
   end
 
+  def aiglon_populer
+    require 'open-uri'
+    require 'nokogiri'
+    url = "http://www.aiglon.be/prev-etudiants.cfm?fbclid=IwAR39osuYj2n6CFhTLu4j7zjfT7NNO_L6or3TtM47sq_0resNehZ-UvwcHac"
+    html_file = open(url).read
+    html_doc = Nokogiri::HTML(html_file)
+    liens = []
+    array = html_doc.xpath('//a/@href').drop(17).reverse.drop(16).reverse
+    array = array.reject {|v| array.index(v).odd?}
+    array.each do |element|
+      liens << "http://www.aiglon.be/#{element}"
+    end
+    liens.each do |lien|
+      url = lien
+      html_file = open(url).read
+      html_doc = Nokogiri::HTML(html_file)
+      adresse = html_doc.search('.listing-address').text.strip
+      type = html_doc.search('.basic-table')[1].css('tbody').css('tr')[0].css('td')[3].text.strip
+      quartier = html_doc.search('.basic-table').css('tbody').css('tr')[1].css('td')[3].text.strip
+      nombre_chambres = 1
+      propriétaire = "L'aiglon"
+      disponible = true
+      photos = []
+      puts html_doc.css('img')[2]
+      html_doc.search('.container').css('img').each do |element|
+        if element['src'].match(/^images\/projects/)
+          photos << "http://www.aiglon.be/#{element['src']}"
+        end
+      end
+      kot = Kot.create!(addresse: adresse, user_id: 1, type_kot: type, quartier: quartier, nombre_chambres: nombre_chambres, agence: propriétaire, disponible: disponible)
+      photos.each do |photo|
+        file = URI.open(photo)
+        kot.photos.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+      end
+    end
+    redirect_to root_path
+  end
+
+  def aiglon_update
+    all_kots = Kot.where(agence: "L'aiglon")
+
+    require 'open-uri'
+    require 'nokogiri'
+    url = "http://www.aiglon.be/prev-etudiants.cfm?fbclid=IwAR39osuYj2n6CFhTLu4j7zjfT7NNO_L6or3TtM47sq_0resNehZ-UvwcHac"
+    html_file = open(url).read
+    html_doc = Nokogiri::HTML(html_file)
+    liens = []
+    array = html_doc.xpath('//a/@href').drop(17).reverse.drop(16).reverse
+    array = array.reject {|v| array.index(v).odd?}
+    array.each do |element|
+      liens << "http://www.aiglon.be/#{element}"
+    end
+    adresses = []
+    liens.each do |lien|
+      url = lien
+      html_file = open(url).read
+      html_doc = Nokogiri::HTML(html_file)
+      adresses << html_doc.search('.listing-address').text.strip
+
+    end
+    all_kots.each do |kot|
+      if adresses.include? kot.addresse
+        kot.update(disponible: true)
+      else
+        kot.update(disponible: false)
+      end
+    end
+
+    redirect_to root_path
+  end
+
 
   private
 
