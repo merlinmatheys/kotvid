@@ -10,3 +10,5 @@ environment.plugins.prepend('Provide',
 )
 
 module.exports = environment
+
+environment.loaders.delete('nodeModules')

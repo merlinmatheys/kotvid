@@ -35,6 +35,15 @@ class KotsController < ApplicationController
       @kots = all_kots.sort_by { |all_kots| all_kots[:addresse] }
       @kots_indisponibles = Kot.where(disponible: false).sort_by { |kots_indisponibles| kots_indisponibles[:addresse].capitalize }
     end
+
+    @kots_geocoded = Kot.geocoded # returns flats with coordinates
+
+    @markers = @kots_geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def show

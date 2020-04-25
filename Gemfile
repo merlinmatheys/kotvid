@@ -24,6 +24,9 @@ gem 'turbolinks', '~> 5'
 
 gem 'cloudinary', '~> 1.12.0'
 
+
+gem 'watir', '~> 6.16', '>= 6.16.5'
+
 gem 'geocoder'
 
 # Use Active Storage variant

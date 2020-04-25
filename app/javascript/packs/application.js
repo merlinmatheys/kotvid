@@ -11,11 +11,39 @@ require("channels")
 import 'bootstrap';
 
 // CSS
+// import { initMapbox } from '../plugins/init_mapbox';
+// document.addEventListener('turbolinks:load', () => {
+//   initMapbox();
+// })
 import { initMapbox } from '../plugins/init_mapbox';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
 })
+
+// export { initMapbox };
+
+// import mapboxgl from 'mapbox-gl'
+// document.getElementById('map')
+// const mapElement = document.getElementById('map');
+
+// // console.log(document.getElementById('map'))
+
+// mapboxgl.accessToken = 'pk.eyJ1IjoiZGlhbXMiLCJhIjoiY2s5M3kyNDdrMDR6cjNlbnkzamdmampmYyJ9.4qspABqw_4cIFzI74SviOQ';
+// // mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+// const map = new mapboxgl.Map({
+//   container: 'map',
+//   style: 'mapbox://styles/mapbox/streets-v11'
+// });
+
+
+// const markers = JSON.parse(mapElement.dataset.markers);
+// markers.forEach((marker) => {
+//   new mapboxgl.Marker()
+//     .setLngLat([ marker.lng, marker.lat ])
+//     .addTo(map);
+// });
+
 
 // import 'mapbox-gl/dist/mapbox-gl.css';
 // internal imports
