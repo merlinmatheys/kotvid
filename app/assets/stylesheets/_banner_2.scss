@@ -1,0 +1,57 @@
+.photo-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-image: url('../banner.png');
+  background-position: center;
+  background-size: cover;
+  .banner-middle {
+    p {
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+      font-size: 27px;
+      text-transform: uppercase;
+      text-align: center;
+      color: white;
+    }
+  }
+}
+
+
+.index-container {
+  width: 70%;
+  margin: auto;
+  background-color: white;
+  margin: -80px auto 0 auto;
+  .banner-bottom {
+    height: 150px;
+    padding: 30px 0 25px 0;
+    box-shadow: -20px -20px 20px -20px rgba(0,0,0,.2), 20px -20px 20px -20px rgba(0,0,0,.2);
+    display: flex;
+    justify-content: space-evenly;
+    div {
+      width: 1px;
+      background-color: gray;
+      height: 30px;
+    }
+    p, a {
+      font-size: 23px;
+      color: black;
+      text-decoration: none;
+    }
+    p:hover, a:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.white-background {
+  background-color: white;
+}
+
+
+
+
+
+

@@ -1,5 +1,19 @@
 * {box-sizing:border-box}
 
+  .slideshow-container {
+      width: 100%;
+      height: 100%;
+    .myslides {
+      width: 100%;
+      height: 100%;
+      .image-miniature {
+        height: 200px;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
 /* Slideshow container */
 .slideshow-container {
   max-width: 1000px;
