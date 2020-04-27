@@ -24,7 +24,65 @@
       <div></div>
       <p><%= link_to "A propos", root_path %></p>
     </div>
+
     <div class="filter-box">
+      <form novalidate="novalidate" action="/" accept-charset="UTF-8" method="get">
+        <div class="filter-box-top">
+          <select placeholder="Type de kot" name="search[type_kot_search]">
+            <option value="" disabled selected>Type de logement</option>
+            <option value="Colocation">Colocation</option>
+            <option value="Studio">Studio</option>
+            <option value="Appartement">Appartement</option>
+          </select>
+          <a onclick="showPrice()">Prix</a>
+          <div class="price-card" id="price-card" style="display: none;">
+            <p>Minimum</p>
+            <input placeholder="0" type="number" name="search[price_low]">
+            <p>Maximum</p>
+            <input placeholder="0" type="number" name="search[price_high]">
+            <a onclick="showPrice()">Valider</a>
+          </div>
+          <a onclick="showFilters()">Plus de filtres +</a>
+        </div>
+        <div class="filter-box-top"  id="additional-filters" style="display: none;">
+          <select name="search[quartier_search]" id="search_quartier_search">
+            <option value="" disabled selected>Quartier</option>
+            <option value="Biéreau">Biéreau</option>
+            <option value="Lauzelle">Lauzelle</option>
+            <option value="Hocaille">Hocaille</option>
+            <option value="Centre">Centre</option>
+            <option value="Bruyères">Bruyères</option>
+          </select>
+          <select name="search[nombre_chambres]" id="search_chambres_search">
+            <option value="" disabled selected>Nb places libres</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+        </div>
+        <div class="filter-box-middle">
+          <input placeholder="Adresse complète" type="text" name="search[location_search]">
+        </div>
+        <div class="filter-box-bottom">
+          <input type="submit" name="commit" value="🔍 Rechercher" data-disable-with="🔍 Rechercher">
+        </div>
+      </form>
+    </div>
+    <div id="map" style="width: 100%; height: 50vh;
+      " data-markers="<%= @markers.to_json %>"
+       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
+
+
+
+    <!-- <div class="filter-bo">
       <div class="searchbar">
         <form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get">
           <div class="search-index">
@@ -49,10 +107,9 @@
               </div>
               <div class="search-index-haut">
                 <span class="multi-range">
-                    <input type="range" min="0" max="50" value="5" id="lower">
-                    <input type="range" min="0" max="50" value="45" id="upper">
+                    <input type="range" min="0" max="700" value="0" id="lower" name="search[price_low]">
+                    <input type="range" min="0" max="700" value="700" id="upper" name="search[price_high]">
                 </span>
-              <!-- <input placeholder="Loyer" type="range" name="search[price]" id="search_price_search"> -->
               <input placeholder="Nombre de personnes" type="number" name="search[nombre_chambres]" id="search_nombre_chambres_search">
               </div>
               <div class="search-index-milieu">
@@ -63,12 +120,12 @@
               </div>
           </div>
         </form>
-      </div>
-      <div id="map" style="width: 100%; height: 50vh;
-      " data-markers="<%= @markers.to_json %>"
-       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      </div> -->
+      <!-- <div id="map" style="width: 100%; height: 50vh;
+      " data-markers="<%# @markers.to_json %>"
+       data-mapbox-api-key="<%# ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
-  </div>
+  </div> -->
   <div class="card-container">
       <% @kots.each_with_index do |kot, index| %>
         <div class="card">
@@ -77,8 +134,7 @@
           <div class="card-pictures" id="<%= index %>" data-index="1">
             <div class="slideshow-container">
                 <% kot.photos.each_with_index do |photo, index| %>
-                  <div class="mySlides">
-                    <%= cl_image_tag photo.key, class: 'image-miniature'%>
+                  <div class="mySlides" id="slides" style="background-image: url(http://res.cloudinary.com/daykp5f46/image/upload/<%= photo.key %>);">
                   </div>
                 <% end %>
               <a class="prev" onclick="showSlides(-1, <%= index %>)">&#10094;</a>
@@ -88,9 +144,9 @@
 
 
           <div class="card-infos">
+            <%= link_to content_tag(:span), kot_path(kot) %>
             <p><%= kot.addresse %></p>
-            <p><%= kot.agence %></p>
-            <%= link_to "kot", kot_path(kot) %>
+            <p><%= kot.recovery_date %> ○ <%= kot.quartier %> ○ <%= kot.nombre_chambres %> personnes</p>
           </div>
         </div>
       <% end %>
@@ -98,6 +154,7 @@
 
 
 <script>
+
   initSlides()
 
   function showSlides(a, e) {
@@ -120,7 +177,26 @@
     for(let i = 0; i < cards.length; i++) {
       var kot = document.getElementById(i)
       var slides = kot.getElementsByClassName("mySlides");
+      // slides.style.display = "block"
       if (slides.length > 0) { slides[0].style.display = "block" }
+    }
+  }
+
+  function showFilters() {
+    var filters = document.getElementById("additional-filters")
+    if (filters.style.display == "block"){
+      filters.style.display = "none"
+    } else if (filters.style.display == "none") {
+      filters.style.display = "block"
+    }
+  }
+
+  function showPrice() {
+    var filters = document.getElementById("price-card")
+    if (filters.style.display == "block"){
+      filters.style.display = "none"
+    } else if (filters.style.display == "none") {
+      filters.style.display = "block"
     }
   }
 </script>

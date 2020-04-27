@@ -1,13 +1,14 @@
 class KotsController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
-
   def index
     if params[:search].present?
       @kots = Kot.all
-      @kots = @kots.near(params[:search][:location_search], 10000, order: :distance) if params[:search][:location_search].present?
       @kots = @kots.where(type_kot: params[:search][:type_kot_search]) if params[:search][:type_kot_search].present?
       @kots = @kots.where(quartier: params[:search][:quartier_search]) if params[:search][:quartier_search].present?
-      @kots = @kots.where(nombre_chambres: params[:search][:nombre_chambres_search]) if params[:search][:nombre_chambres_search].present?
+      @kots = @kots.where("nombre_chambres >= ?", params[:search][:nombre_chambres]) if params[:search][:nombre_chambres].present?
+      @kots = @kots.where("? <= price", params[:search][:price_low]) if params[:search][:price_low].present?
+      @kots = @kots.where("price <= ?", params[:search][:price_high]) if params[:search][:price_high].present?
+      @kots = @kots.near(params[:search][:location_search], 10000, order: :distance) if params[:search][:location_search].present?
     else
       @kots = Kot.all.sort_by { |all_kots| all_kots[:addresse] }
     end
