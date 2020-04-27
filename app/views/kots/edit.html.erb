@@ -36,21 +36,45 @@
           </option></datalist>
         </div>
         <div class="label">
-          <label class="string optional" for="kot_nombre_de_chambres">Nombre de chambres</label>
+          <label class="integer optional" for="kot_nombre_chambres">Nombre chambres libres à la location</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="number" value="<%= @kot.nombre_chambres %>" name="kot[nombre_chambres]" id="kot_nombre_chambres">
+          <input class="connection-input" type="number" name="kot[nombre_chambres_libres]" id="kot_nombre_chambres_libres">
+        </div>
+        <div class="label">
+          <label class="integer optional" for="kot_nombre_chambres">Nombre de personnes dans la colocation</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="number" name="kot[nombre_chambres]" id="kot_nombre_chambres">
         </div>
         <div class="label">
           <label class="string optional" for="kot_propriétaire">Propriétaire</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="text" value="<%= @kot.agence %>" name="kot[agence]" id="kot_agence">
+          <input class="connection-input" type="text" name="kot[agence]" id="kot_agence">
+        </div>
+        <div class="label">
+          <label class="integer optional" for="kot_price">Loyer charges incluses</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="number" name="kot[price]" id="kot_price">
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_description">Description</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="text" name="kot[description]" id="kot_description">
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_recovery_date">Disponible le</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="text" name="kot[recovery_date]" id="kot_recovery_date">
         </div>
 
         <legend class="col-form-label pt-0">Disponible</legend>
         <fieldset class="form-group radio_buttons optional kot_disponible">
-          <input type="hidden" name="kot[disponible]" value="<%= @kot.disponible %>">
+          <input type="hidden" name="kot[disponible]" value="">
           <div class="radio-buttons">
             <div class="form-check">
               <input class="form-check-input radio_buttons optional" type="radio" value="true" name="kot[disponible]" id="kot_disponible_true">
