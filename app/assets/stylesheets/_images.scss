@@ -21,6 +21,8 @@
 
 .big-image {
   width: 100%;
+  height: 90vh;
+  object-fit: contain;
 }
 
 /* Hide the images by default */
