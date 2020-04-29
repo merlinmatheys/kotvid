@@ -3,30 +3,17 @@
   <% if user_signed_in? %>
     <form class="simple_form edit_kot" id="edit_kot_<%= @kot.id %>" novalidate="novalidate" enctype="multipart/form-data" action="/kots/<%= @kot.id %>" accept-charset="UTF-8" method="post"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
       <div class="form-inputs">
-          <input value="2" type="hidden" name="kot[user_id]" id="kot_user_id">
         <div class="label">
           <label class="string optional" for="kot_adresse">Adresse</label>
         </div>
         <div class="field">
-          <input placeholder="Rue de la Ramée, 14/001, 1348 - Louvain-la-Neuve" class="connection-input" type="text" value="<%= @kot.addresse %>" name="kot[addresse]" id="kot_addresse">
-        </div>
-        <div class="label">
-          <label class="string optional" for="kot_type_kot">Type kot</label>
-        </div>
-        <div class="field">
-          <input list="types" class="connection-input" type="text" value="<%= @kot.type_kot %>" name="kot[type_kot]" id="kot_type_kot">
-          <datalist id="types">
-            <option value="Kot UCL">
-            </option><option value="Kot privé">
-            </option><option value="Studio">
-            </option><option value="Appartement">
-          </option></datalist>
+          <input placeholder="Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve" class="connection-input" type="text" name="kot[addresse]" id="kot_addresse">
         </div>
         <div class="label">
           <label class="string optional" for="kot_quartier_">Quartier</label>
         </div>
         <div class="field">
-          <input list="quartiers" class="connection-input" type="text" value="<%= @kot.quartier %>" name="kot[quartier]" id="kot_quartier">
+          <input list="quartiers" class="connection-input" type="text" name="kot[quartier]" id="kot_quartier">
           <datalist id="quartiers">
             <option value="Biéreau">
             </option><option value="Lauzelle">
@@ -36,10 +23,16 @@
           </option></datalist>
         </div>
         <div class="label">
-          <label class="integer optional" for="kot_nombre_chambres">Nombre chambres libres à la location</label>
+          <label class="string optional" for="kot_type_kot">Type de logement</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="number" name="kot[nombre_chambres_libres]" id="kot_nombre_chambres_libres">
+          <input list="types" class="connection-input" type="text" name="kot[type_kot]" id="kot_type_kot">
+          <datalist id="types">
+            <option value="Kot UCL">
+            </option><option value="Kot privé">
+            </option><option value="Studio">
+            </option><option value="Appartement">
+          </option></datalist>
         </div>
         <div class="label">
           <label class="integer optional" for="kot_nombre_chambres">Nombre de personnes dans la colocation</label>
@@ -48,28 +41,34 @@
           <input class="connection-input" type="number" name="kot[nombre_chambres]" id="kot_nombre_chambres">
         </div>
         <div class="label">
-          <label class="string optional" for="kot_propriétaire">Propriétaire</label>
-        </div>
-        <div class="field">
-          <input class="connection-input" type="text" name="kot[agence]" id="kot_agence">
-        </div>
-        <div class="label">
           <label class="integer optional" for="kot_price">Loyer charges incluses</label>
         </div>
         <div class="field">
           <input class="connection-input" type="number" name="kot[price]" id="kot_price">
         </div>
         <div class="label">
-          <label class="string optional" for="kot_description">Description</label>
-        </div>
-        <div class="field">
-          <input class="connection-input" type="text" name="kot[description]" id="kot_description">
-        </div>
-        <div class="label">
           <label class="string optional" for="kot_recovery_date">Disponible le</label>
         </div>
         <div class="field">
           <input class="connection-input" type="text" name="kot[recovery_date]" id="kot_recovery_date">
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_propriétaire">Propriétaire</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="text" name="kot[agence]" id="kot_agence">
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_email">Email</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="text" name="kot[email]" id="kot_email">
+        </div>
+        <div class="label">
+          <label class="string optional" for="kot_phone">Téléphonne</label>
+        </div>
+        <div class="field">
+          <input class="connection-input" type="text" name="kot[phone]" id="kot_phone">
         </div>
 
         <legend class="col-form-label pt-0">Disponible</legend>
@@ -105,7 +104,7 @@
           <div class="form-group file optional kot_photos photo-input"><label class="file optional" for="kot_photos">Photos</label><input class="form-control-file file optional" multiple="multiple" type="file" name="kot[photos][]" id="kot_photos"></div>
         </div>
         <div class="form-actions">
-          <input type="submit" name="commit" value="Modifier" class="btn ajouter" data-disable-with="Modifier">
+          <input type="submit" name="commit" value="Ajouter" class="btn ajouter" data-disable-with="Ajouter">
         </div>
       </div>
     </form>

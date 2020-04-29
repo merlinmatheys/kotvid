@@ -22,6 +22,10 @@ class KotsController < ApplicationController
     end
   end
 
+  def mykots
+    @kots = Kot.where(user_id: current_user.id + 1)
+  end
+
   def show
     @kot = Kot.find(params[:id])
   end
@@ -133,7 +137,7 @@ class KotsController < ApplicationController
   private
 
   def kot_params
-    params.require(:kot).permit(:addresse, :quartier, :nombre_chambres, :user_id, :type_kot, :agence, :price, :description, :recovery_date, :disponible, :nombre_chambres_libres, photos: [])
+    params.require(:kot).permit(:addresse, :quartier, :nombre_chambres, :user_id, :type_kot, :agence, :price, :recovery_date, :disponible, :email, :phone, photos: [])
   end
 
 end

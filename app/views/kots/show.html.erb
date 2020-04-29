@@ -28,18 +28,18 @@
       <div>
       <p class="blue-title">Propriétaire:</p>
       <p><%= @kot.agence %></p>
+      <p><%= @kot.email %></p>
+      <p><%= @kot.phone %></p>
       </div>
     </div>
     <div class="info-box-bas">
       <div>
+      <p class="blue-title">Loyer indicatif:</p>
+      <p><%= @kot.price %> € ch. comp.</p>
+      </div>
+      <div>
       <p class="blue-title">Disponible:</p>
-      <% if @kot.disponible %>
-        <p>Oui</p>
-      <% elsif @kot.disponible == nil %>
-        <p>Non précisé</p>
-      <% else %>
-        <p>Non</p>
-      <% end %>
+      <p><%= @kot.recovery_date %></p>
       </div>
       <div>
       <p class="blue-title">Nb chambres commu:</p>

@@ -8,18 +8,30 @@
 
 .card {
   height: 300px;
-  border: 1px solid gray;
+  border: 1.6px solid rgb(0, 93, 124);
+  border-radius: 5px;
 }
 
 .card-pictures {
-  height: 80%;
+  height: 75%;
   width: 100%;
+  border-radius: 5px 5px 0 0;
 }
 
 .card-infos {
   position: relative;
   width: 100%;
-  height: 20%;
+  height: 25%;
+  padding: 5px;
+  background-color: rgba(222, 237, 254, 0.7);
+  p {
+    font-size: 18px;
+  }
+  border-radius: 0 0 5px 5px;
+}
+
+.card-infos:hover {
+  background-color: rgb(222, 237, 254);
 }
 
 .card-infos span {
@@ -29,4 +41,23 @@
   z-index:2;
   top:0px;
   left:0px;
+}
+
+#slides {
+  .prix {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .prix-bas {
+      width: 18%;
+      background-color: white;
+      padding: 2px;
+      margin-bottom: 5px;
+      border-radius: 0 3px 3px 0;
+      p {
+        font-size: 20px;
+      }
+    }
+  }
 }

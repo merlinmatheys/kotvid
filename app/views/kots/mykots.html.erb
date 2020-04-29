@@ -1,0 +1,118 @@
+<div class="index-container" id="index-container">
+  <div class="filter-box">
+      <form novalidate="novalidate" action="#recherche" accept-charset="UTF-8" method="get">
+        <div class="filter-box-top">
+          <select placeholder="Type de kot" name="search[type_kot_search]">
+            <option value="" disabled selected>Type de logement</option>
+            <option value="Colocation">Colocation</option>
+            <option value="Studio">Studio</option>
+            <option value="Appartement">Appartement</option>
+          </select>
+          <button type="button" onclick="showFilters()">Prix</button>
+          <select name="search[quartier_search]" id="search_quartier_search">
+            <option value="" disabled selected>Quartier</option>
+            <option value="Biéreau">Biéreau</option>
+            <option value="Lauzelle">Lauzelle</option>
+            <option value="Hocaille">Hocaille</option>
+            <option value="Centre">Centre</option>
+            <option value="Bruyères">Bruyères</option>
+          </select>
+        </div>
+        <div class="filter-box-top"  id="additional-filters" style="display: none;">
+          <select name="search[price_low]">
+            <option value="0" disabled selected>Prix Min</option>
+            <option value="250">250 €</option>
+            <option value="300">300 €</option>
+            <option value="350">350 €</option>
+            <option value="400">400 €</option>
+            <option value="450">450 €</option>
+            <option value="500">500 €</option>
+          </select>
+          <select name="search[price_high]">
+            <option value="1000" disabled selected>Prix Max</option>
+            <option value="700">700 €</option>
+            <option value="650">650 €</option>
+            <option value="600">600 €</option>
+            <option value="550">550 €</option>
+            <option value="500">500 €</option>
+            <option value="450">450 €</option>
+            <option value="400">400 €</option>
+            <option value="350">350 €</option>
+          </select>
+        </div>
+        <div class="filter-box-middle">
+          <input placeholder="Adresse complète" type="text" name="search[location_search]">
+        </div>
+        <div class="filter-box-bottom">
+          <input type="submit" name="commit" value="🔍 Rechercher" data-disable-with="🔍 Rechercher">
+        </div>
+      </form>
+    </div>
+
+  <div class="card-container" id="card-container">
+      <% @kots.each_with_index do |kot, index| %>
+        <div class="card" id="card">
+          <div class="card-pictures" id="<%= index %>" data-index="1">
+            <div class="slideshow-container">
+                <% kot.photos.each_with_index do |photo, index| %>
+                  <div class="mySlides" id="slides" style="background-image: url(http://res.cloudinary.com/daykp5f46/image/upload/<%= photo.key %>);">
+                    <div class="prix">
+                      <div></div>
+                      <div class="prix-bas">
+                        <p><%= kot.price %> €</p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <a class="prev" onclick="showSlides(-1, <%= index %>)">&#10094;</a>
+              <a class="next" onclick="showSlides(1, <%= index %>)">&#10095;</a>
+            </div>
+          </div>
+          <div class="card-infos">
+            <%= link_to content_tag(:span), kot_path(kot) %>
+            <p><%= kot.addresse %></p>
+            <p><%= kot.quartier %> ○ <%= kot.recovery_date %></p>
+          </div>
+        </div>
+      <% end %>
+  </div>
+
+
+<script>
+  initSlides()
+
+  function showSlides(a, e) {
+    var i;
+    var kot = document.getElementById(e)
+    var x = parseInt(kot.dataset.index, 10);
+    var n = x += a
+    var slides = kot.getElementsByClassName("mySlides");
+    if (n > slides.length) {n = 1}
+    if (n < 1) {n = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[n-1].style.display = "block";
+    kot.setAttribute('data-index', n)
+  }
+
+  function initSlides() {
+    var cards = document.getElementsByClassName("card-pictures")
+    for(let i = 0; i < cards.length; i++) {
+      var kot = document.getElementById(i)
+      var slides = kot.getElementsByClassName("mySlides");
+      // slides.style.display = "block"
+      if (slides.length > 0) { slides[0].style.display = "block" }
+    }
+  }
+
+  function showFilters() {
+    var filters = document.getElementById("additional-filters")
+    if (filters.style.display == "block"){
+      filters.style.display = "none"
+    } else if (filters.style.display == "none") {
+      filters.style.display = "block"
+    }
+  }
+</script>
+</div>
