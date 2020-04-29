@@ -6,6 +6,18 @@
   grid-gap: 10px;
 }
 
+@media(max-width: 800px) {
+  .card-container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media(max-width: 500px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+}
+
 .card {
   height: 300px;
   border: 1.6px solid rgb(0, 93, 124);

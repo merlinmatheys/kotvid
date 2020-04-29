@@ -50,6 +50,19 @@
   background-color: white;
 }
 
+@media(max-width: 1050px) {
+  .index-container {
+    width: 90%;
+  }
+}
+
+@media(max-width: 600px) {
+  .index-container {
+    width: 95%;
+  }
+}
+
+
 
 
 
