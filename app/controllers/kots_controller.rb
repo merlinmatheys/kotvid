@@ -2,18 +2,25 @@ class KotsController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
   def index
     if params[:search].present?
-      @kots = Kot.all
+      @kots = Kot.where(disponible: true) && Kot.where(disponible: nil)
       @kots = @kots.where(type_kot: params[:search][:type_kot_search]) if params[:search][:type_kot_search].present?
       @kots = @kots.where(quartier: params[:search][:quartier_search]) if params[:search][:quartier_search].present?
-      @kots = @kots.where("nombre_chambres >= ?", params[:search][:nombre_chambres]) if params[:search][:nombre_chambres].present?
       @kots = @kots.where("? <= price", params[:search][:price_low]) if params[:search][:price_low].present?
       @kots = @kots.where("price <= ?", params[:search][:price_high]) if params[:search][:price_high].present?
       @kots = @kots.near(params[:search][:location_search], 10000, order: :distance) if params[:search][:location_search].present?
     else
-      @kots = Kot.all.sort_by { |all_kots| all_kots[:addresse] }
+      @kots = Kot.where(disponible: true) && Kot.where(disponible: nil)
+      @kots = @kots.all.sort_by { |all_kots| all_kots[:addresse] }
+      @kots_indisponibles = Kot.where(disponible: false)
     end
     @kots_geocoded = Kot.geocoded # returns flats with coordinates
-
+    @kots_geocoded = @kots_geocoded.where(disponible: true) && Kot.where(disponible: nil)
+    if params[:search].present?
+      @kots_geocoded = @kots_geocoded.where(type_kot: params[:search][:type_kot_search]) if params[:search][:type_kot_search].present?
+      @kots_geocoded = @kots_geocoded.where(quartier: params[:search][:quartier_search]) if params[:search][:quartier_search].present?
+      @kots_geocoded = @kots_geocoded.where("? <= price", params[:search][:price_low]) if params[:search][:price_low].present?
+      @kots_geocoded = @kots_geocoded.where("price <= ?", params[:search][:price_high]) if params[:search][:price_high].present?
+    end
     @markers = @kots_geocoded.map do |flat|
       {
         lat: flat.latitude,

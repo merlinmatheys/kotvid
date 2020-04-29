@@ -68,27 +68,6 @@
             <option value="400">400 €</option>
             <option value="350">350 €</option>
           </select>
-          <!-- <select name="search[quartier_search]" id="search_quartier_search">
-            <option value="" disabled selected>Quartier</option>
-            <option value="Biéreau">Biéreau</option>
-            <option value="Lauzelle">Lauzelle</option>
-            <option value="Hocaille">Hocaille</option>
-            <option value="Centre">Centre</option>
-            <option value="Bruyères">Bruyères</option>
-          </select>
-          <select name="search[nombre_chambres]" id="search_chambres_search">
-            <option value="" disabled selected>Nb places libres</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select> -->
         </div>
         <div class="filter-box-middle">
           <input placeholder="Adresse complète" type="text" name="search[location_search]">
@@ -98,64 +77,14 @@
         </div>
       </form>
     </div>
-    <!-- <div id="map-photo" onclick="showMap()">
-    </div> -->
     <div id="map"
           data-markers="<%= @markers.to_json %>"
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
 
-
-
-    <!-- <div class="filter-bo">
-      <div class="searchbar">
-        <form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get">
-          <div class="search-index">
-            <div class="search-index-haut">
-              <select placeholder="Quartier" name="search[quartier_search]" id="search_quartier_search">
-                  <option value="" disabled selected>Quartier</option>
-                  <option value="Biéreau">Biéreau</option>
-                  <option value="Lauzelle">Lauzelle</option>
-                  <option value="Hocaille">Hocaille</option>
-                  <option value="Centre">Centre</option>
-                  <option value="Bruyères">Bruyères</option>
-                  <option value="NC">NC</option>
-              </select>
-
-              <select placeholder="Type de kot" name="search[type_kot_search]" id="search_type_kot_search">
-                  <option value="" disabled selected>Type de logement</option>
-                  <option value="Kot UCL">Kot UCL</option>
-                  <option value="Kot privé">Kot privé</option>
-                  <option value="Appartement">Appartement</option>
-                  <option value="Studio">Studio</option>
-              </select>
-              </div>
-              <div class="search-index-haut">
-                <span class="multi-range">
-                    <input type="range" min="0" max="700" value="0" id="lower" name="search[price_low]">
-                    <input type="range" min="0" max="700" value="700" id="upper" name="search[price_high]">
-                </span>
-              <input placeholder="Nombre de personnes" type="number" name="search[nombre_chambres]" id="search_nombre_chambres_search">
-              </div>
-              <div class="search-index-milieu">
-                <input placeholder="Adresse complète" type="text" name="search[location_search]" id="search_location_search">
-              </div>
-              <div class="search-index-bas">
-                <input type="submit" name="commit" class="btn-ghost none" value="🔍 Rechercher" data-disable-with="🔍 Rechercher">
-              </div>
-          </div>
-        </form>
-      </div> -->
-      <!-- <div id="map" style="width: 100%; height: 50vh;
-      " data-markers="<%# @markers.to_json %>"
-       data-mapbox-api-key="<%# ENV['MAPBOX_API_KEY'] %>"></div>
-    </div>
-  </div> -->
   <div class="card-container">
       <% @kots.each_with_index do |kot, index| %>
         <div class="card">
-
-
           <div class="card-pictures" id="<%= index %>" data-index="1">
             <div class="slideshow-container">
                 <% kot.photos.each_with_index do |photo, index| %>
@@ -172,8 +101,6 @@
               <a class="next" onclick="showSlides(1, <%= index %>)">&#10095;</a>
             </div>
           </div>
-
-
           <div class="card-infos">
             <%= link_to content_tag(:span), kot_path(kot) %>
             <p><%= kot.addresse %></p>
@@ -181,7 +108,34 @@
           </div>
         </div>
       <% end %>
-  </div>
+    </div>
+    <div class="card-container">
+      <% @kots_indisponibles.each_with_index do |kot, index| %>
+        <div class="card">
+          <div class="card-pictures-indisponibles" id="<%= index + 10000 %>" data-index="1">
+            <div class="slideshow-container">
+                <% kot.photos.each_with_index do |photo, index| %>
+                  <div class="mySlides" id="slides" style="background-image: url('<%= cl_image_path photo.key %>')">
+                    <div class="prix">
+                      <div></div>
+                      <div class="prix-bas">
+                        <p><%= kot.price %> €</p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <a class="prev" onclick="showSlides(-1, <%= index + 10000 %>)">&#10094;</a>
+              <a class="next" onclick="showSlides(1, <%= index + 10000 %>)">&#10095;</a>
+            </div>
+          </div>
+          <div class="card-infos card-infos-indisponibles">
+            <%= link_to content_tag(:span), kot_path(kot) %>
+            <p><%= kot.addresse %></p>
+            <p><%= kot.type_kot %> ○ <%= kot.quartier %> ○ <%= kot.recovery_date %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
 
   <% if @kots == [] %>
     <div class="diviseur-kots">
@@ -193,6 +147,7 @@
 <script>
 
   initSlides()
+  initSlides2()
 
   function showSlides(a, e) {
     var i;
@@ -213,8 +168,18 @@
     var cards = document.getElementsByClassName("card-pictures")
     for(let i = 0; i < cards.length; i++) {
       var kot = document.getElementById(i)
+      console.log(kot)
       var slides = kot.getElementsByClassName("mySlides");
-      // slides.style.display = "block"
+      if (slides.length > 0) { slides[0].style.display = "block" }
+    }
+  }
+
+  function initSlides2() {
+    var cards = document.getElementsByClassName("card-pictures-indisponibles")
+    for(let i = 10000; i < (cards.length + 10000); i++) {
+      var kot = document.getElementById(i)
+      console.log(kot)
+      var slides = kot.getElementsByClassName("mySlides");
       if (slides.length > 0) { slides[0].style.display = "block" }
     }
   }
@@ -245,23 +210,6 @@
   }
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="footer">
   <div>
     <p style="font-weight:bold">Contactez-nous</p>
@@ -272,65 +220,3 @@
     <p>Téléphone: +32 492 63 87 10</p>
   </div>
 </div>
-
-
-<!-- <script>
-var lowerSlider = document.querySelector('#lower'),
-   upperSlider = document.querySelector('#upper'),
-   lowerVal = parseInt(lowerSlider.value);
-   upperVal = parseInt(upperSlider.value);
-
-upperSlider.oninput = function() {
-   lowerVal = parseInt(lowerSlider.value);
-   upperVal = parseInt(upperSlider.value);
-
-   if (upperVal < lowerVal + 4) {
-      lowerSlider.value = upperVal - 4;
-
-      if (lowerVal == lowerSlider.min) {
-         upperSlider.value = 4;
-      }
-   }
-};
-<<<<<<< HEAD
-
-=======
->>>>>>> dda9854fdee1e45c076a9bcdf9fe4807dd48725a
-
-lowerSlider.oninput = function() {
-   lowerVal = parseInt(lowerSlider.value);
-   upperVal = parseInt(upperSlider.value);
-
-<<<<<<< HEAD
-   if (lowerVal > upperVal - 4) {
-      upperSlider.value = lowerVal + 4;
-=======
-lowerSlider.oninput = function() {
-   lowerVal = parseInt(lowerSlider.value);
-   upperVal = parseInt(upperSlider.value);
-
-   if (lowerVal > upperVal - 4) {
-      upperSlider.value = lowerVal + 4;
-
-      if (upperVal == upperSlider.max) {
-         lowerSlider.value = parseInt(upperSlider.max) - 4;
-      }
-
-   }
-};
-
-</script>
-
->>>>>>> dda9854fdee1e45c076a9bcdf9fe4807dd48725a
-
-      if (upperVal == upperSlider.max) {
-         lowerSlider.value = parseInt(upperSlider.max) - 4;
-      }
-
-   }
-};
-
-</script>
-
-
- -->
