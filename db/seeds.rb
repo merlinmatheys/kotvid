@@ -3,37 +3,37 @@
 
     require 'open-uri'
     require 'nokogiri'
-    # require 'watir'
+    require 'watir'
 
-    # browser = Watir::Browser.new(:chrome)
-    # browser.goto('https://louer.eckelmans.net/notre-offre-2')
+    browser = Watir::Browser.new(:chrome)
+    browser.goto('https://louer.eckelmans.net/notre-offre-2')
 
-    # browser.execute_script('document.querySelector("select").value="E"')
-    # browser.execute_script('document.querySelector("select").onchange()')
-    # browser.execute_script('document.querySelectorAll("select")[1].value="8"')
-    # browser.execute_script('document.querySelectorAll("select")[1].onchange()')
-    # 21.times do
-    #   browser.link(text: 'Afficher la suite').click
-    #   # browser.execute_script('document.querySelectorAll("a")[20].onclick()')
-    #   browser.element(text: 'Afficher la suite').wait_until(&:present?)
-    # end
-    # sleep(2)
+    browser.execute_script('document.querySelector("select").value="E"')
+    browser.execute_script('document.querySelector("select").onchange()')
+    browser.execute_script('document.querySelectorAll("select")[1].value="8"')
+    browser.execute_script('document.querySelectorAll("select")[1].onchange()')
+    21.times do
+      browser.link(text: 'Afficher la suite').click
+      # browser.execute_script('document.querySelectorAll("a")[20].onclick()')
+      browser.element(text: 'Afficher la suite').wait_until(&:present?)
+    end
+    sleep(2)
 
-    # puts html_file = browser.body.inner_html
-    # html_doc = Nokogiri::HTML(html_file)
-    # array = []
-    # html_doc.xpath(' //*[@class="bienSummary"]/div[6]').each do |element|
-    #   array << element
-    #   puts element.text
-    # end
-    # puts array.count
+    puts html_file = browser.body.inner_html
+    html_doc = Nokogiri::HTML(html_file)
+    array = []
+    html_doc.xpath(' //*[@class="bienSummary"]/div[6]').each do |element|
+      array << element
+      puts element.text
+    end
+    puts array.count
 
-    # array = []
-    # something = browser.element(css: 'h1')
-    # puts html_doc = Nokogiri::HTML(something)
+    array = []
+    something = browser.element(css: 'h1')
+    puts html_doc = Nokogiri::HTML(something)
 
-    # url = 'https://louer.eckelmans.net/notre-offre-2/'
-    # html_file = open(url,{ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read
+    url = 'https://louer.eckelmans.net/notre-offre-2/'
+    html_file = open(url,{ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}).read
 
 
     liens = []
