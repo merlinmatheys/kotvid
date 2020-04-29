@@ -7,13 +7,13 @@
           <label class="string optional" for="kot_adresse">Adresse</label>
         </div>
         <div class="field">
-          <input placeholder="Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve" class="connection-input" type="text" name="kot[addresse]" id="kot_addresse">
+          <input placeholder="Rue de la Citronnelle 07/000 - 1348 Louvain-la-Neuve" value="<%= @kot.addresse %>" class="connection-input" type="text" name="kot[addresse]" id="kot_addresse">
         </div>
         <div class="label">
           <label class="string optional" for="kot_quartier_">Quartier</label>
         </div>
         <div class="field">
-          <input list="quartiers" class="connection-input" type="text" name="kot[quartier]" id="kot_quartier">
+          <input value="<%= @kot.quartier %>" list="quartiers" class="connection-input" type="text" name="kot[quartier]" id="kot_quartier">
           <datalist id="quartiers">
             <option value="Biéreau">
             </option><option value="Lauzelle">
@@ -26,7 +26,7 @@
           <label class="string optional" for="kot_type_kot">Type de logement</label>
         </div>
         <div class="field">
-          <input list="types" class="connection-input" type="text" name="kot[type_kot]" id="kot_type_kot">
+          <input list="types" value="<%= @kot.type_kot %>" class="connection-input" type="text" name="kot[type_kot]" id="kot_type_kot">
           <datalist id="types">
             <option value="Kot UCL">
             </option><option value="Kot privé">
@@ -38,37 +38,37 @@
           <label class="integer optional" for="kot_nombre_chambres">Nombre de personnes dans la colocation</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="number" name="kot[nombre_chambres]" id="kot_nombre_chambres">
+          <input value="<%= @kot.nombre_chambres %>" class="connection-input" type="number" name="kot[nombre_chambres]" id="kot_nombre_chambres">
         </div>
         <div class="label">
           <label class="integer optional" for="kot_price">Loyer charges incluses</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="number" name="kot[price]" id="kot_price">
+          <input value="<%= @kot.price %>" class="connection-input" type="number" name="kot[price]" id="kot_price">
         </div>
         <div class="label">
           <label class="string optional" for="kot_recovery_date">Disponible le</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="text" name="kot[recovery_date]" id="kot_recovery_date">
+          <input value="<%= @kot.recovery_date %>" class="connection-input" type="text" name="kot[recovery_date]" id="kot_recovery_date">
         </div>
         <div class="label">
           <label class="string optional" for="kot_propriétaire">Propriétaire</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="text" name="kot[agence]" id="kot_agence">
+          <input value="<%= @kot.agence %>" class="connection-input" type="text" name="kot[agence]" id="kot_agence">
         </div>
         <div class="label">
           <label class="string optional" for="kot_email">Email</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="text" name="kot[email]" id="kot_email">
+          <input value="<%= @kot.email %>" class="connection-input" type="text" name="kot[email]" id="kot_email">
         </div>
         <div class="label">
           <label class="string optional" for="kot_phone">Téléphonne</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="text" name="kot[phone]" id="kot_phone">
+          <input value="<%= @kot.phone %>" class="connection-input" type="text" name="kot[phone]" id="kot_phone">
         </div>
 
         <legend class="col-form-label pt-0">Disponible</legend>

@@ -23,7 +23,7 @@ class KotsController < ApplicationController
   end
 
   def mykots
-    @kots = Kot.where(user_id: current_user.id + 1)
+    @kots = Kot.where(user_id: current_user.id)
   end
 
   def show
