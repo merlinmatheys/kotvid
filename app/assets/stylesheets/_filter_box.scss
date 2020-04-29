@@ -1,10 +1,10 @@
 .filter-box {
   margin-top: -40px;
   text-align: center;
+  text-align-last: center;
   input:focus, button:focus, select:focus{ outline: none; }
   .filter-box-top {
-    position: relative;
-    select, a {
+    select, button {
       -webkit-appearance: none;
       -webkit-box-shadow: none;
       width: 20%;
@@ -54,3 +54,9 @@
 
   }
 }
+
+
+
+
+
+

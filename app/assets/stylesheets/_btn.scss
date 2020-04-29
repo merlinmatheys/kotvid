@@ -13,6 +13,23 @@
   color: white;
 }
 
+.connection-button {
+  color: white;
+  text-decoration: none;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: bold;
+  background-color: rgb(117, 208, 240);
+  transition: background 0.3s ease;
+  position: absolute;
+  right: 25px;
+  top: 15px;
+}
+
+.connection-button:hover {
+  background-color: rgb(0, 179, 239);
+}
+
 .btn-ghost {
   color: #4A4A4A;
   border: 1px solid #4A4A4A;

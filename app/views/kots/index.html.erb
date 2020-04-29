@@ -1,3 +1,6 @@
+<% unless user_signed_in? %>
+  <%= link_to "Se connecter", new_user_session_path, class: "connection-button" %>
+<% end %>
 <div class="white-background">
 <div class="photo-banner">
   <div class="banner-top">
@@ -26,7 +29,7 @@
     </div>
 
     <div class="filter-box">
-      <form novalidate="novalidate" action="/" accept-charset="UTF-8" method="get">
+      <form novalidate="novalidate" action="#recherche" accept-charset="UTF-8" method="get">
         <div class="filter-box-top">
           <select placeholder="Type de kot" name="search[type_kot_search]">
             <option value="" disabled selected>Type de logement</option>
@@ -34,18 +37,38 @@
             <option value="Studio">Studio</option>
             <option value="Appartement">Appartement</option>
           </select>
-          <a onclick="showPrice()">Prix</a>
-          <div class="price-card" id="price-card" style="display: none;">
-            <p>Minimum</p>
-            <input placeholder="0" type="number" name="search[price_low]">
-            <p>Maximum</p>
-            <input placeholder="0" type="number" name="search[price_high]">
-            <a onclick="showPrice()">Valider</a>
-          </div>
-          <a onclick="showFilters()">Plus de filtres +</a>
+          <button type="button" onclick="showFilters()">Prix</button>
+          <select name="search[quartier_search]" id="search_quartier_search">
+            <option value="" disabled selected>Quartier</option>
+            <option value="Biéreau">Biéreau</option>
+            <option value="Lauzelle">Lauzelle</option>
+            <option value="Hocaille">Hocaille</option>
+            <option value="Centre">Centre</option>
+            <option value="Bruyères">Bruyères</option>
+          </select>
         </div>
         <div class="filter-box-top"  id="additional-filters" style="display: none;">
-          <select name="search[quartier_search]" id="search_quartier_search">
+          <select name="search[price_low]">
+            <option value="0" disabled selected>Prix Min</option>
+            <option value="250">250 €</option>
+            <option value="300">300 €</option>
+            <option value="350">350 €</option>
+            <option value="400">400 €</option>
+            <option value="450">450 €</option>
+            <option value="500">500 €</option>
+          </select>
+          <select name="search[price_high]">
+            <option value="1000" disabled selected>Prix Max</option>
+            <option value="700">700 €</option>
+            <option value="650">650 €</option>
+            <option value="600">600 €</option>
+            <option value="550">550 €</option>
+            <option value="500">500 €</option>
+            <option value="450">450 €</option>
+            <option value="400">400 €</option>
+            <option value="350">350 €</option>
+          </select>
+          <!-- <select name="search[quartier_search]" id="search_quartier_search">
             <option value="" disabled selected>Quartier</option>
             <option value="Biéreau">Biéreau</option>
             <option value="Lauzelle">Lauzelle</option>
@@ -65,7 +88,7 @@
             <option value="8">8</option>
             <option value="9">9</option>
             <option value="10">10</option>
-          </select>
+          </select> -->
         </div>
         <div class="filter-box-middle">
           <input placeholder="Adresse complète" type="text" name="search[location_search]">
@@ -75,9 +98,11 @@
         </div>
       </form>
     </div>
-    <div id="map" style="width: 100%; height: 50vh;
-      " data-markers="<%= @markers.to_json %>"
-       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    <!-- <div id="map-photo" onclick="showMap()">
+    </div> -->
+    <div id="map"
+          data-markers="<%= @markers.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
 
 
@@ -135,6 +160,12 @@
             <div class="slideshow-container">
                 <% kot.photos.each_with_index do |photo, index| %>
                   <div class="mySlides" id="slides" style="background-image: url(http://res.cloudinary.com/daykp5f46/image/upload/<%= photo.key %>);">
+                    <div class="prix">
+                      <div></div>
+                      <div class="prix-bas">
+                        <p><%= kot.price %> €</p>
+                      </div>
+                    </div>
                   </div>
                 <% end %>
               <a class="prev" onclick="showSlides(-1, <%= index %>)">&#10094;</a>
@@ -146,13 +177,19 @@
           <div class="card-infos">
             <%= link_to content_tag(:span), kot_path(kot) %>
             <p><%= kot.addresse %></p>
-            <p><%= kot.recovery_date %> ○ <%= kot.quartier %> ○ <%= kot.nombre_chambres %> personnes</p>
+            <p><%= kot.type_kot %> ○ <%= kot.quartier %> ○ <%= kot.recovery_date %></p>
           </div>
         </div>
       <% end %>
   </div>
 
+  <% if @kots == [] %>
+    <div class="diviseur-kots">
+      <p>Aucun logement ne correspond à vos critères 😢</p>
+    </div>
+  <% end %>
 
+</div>
 <script>
 
   initSlides()
@@ -191,6 +228,13 @@
     }
   }
 
+  function showMap() {
+    var map = document.getElementById("map")
+    var map_photo = document.getElementById("map-photo")
+    map_photo.style.display = "none"
+    map.style.display = "block"
+  }
+
   function showPrice() {
     var filters = document.getElementById("price-card")
     if (filters.style.display == "block"){
@@ -201,135 +245,6 @@
   }
 </script>
 
-  <div class="kots-display">
-    <% if @kots %>
-    <% @kots.each do |kot| %>
-      <div class="kot-index-card blue-card">
-        <%= link_to content_tag(:span), kot_path(kot) %>
-        <div class="kot-index-card-left">
-          <div class="kot-index-card-left-top">
-            <p><%= kot.addresse %></p>
-            <p><%= kot.agence %></p>
-          </div>
-          <div class="kot-index-card-left-bottom">
-            <% if kot.quartier != nil %>
-              <p>Quartier: <%= kot.quartier %></p>
-            <% end %>
-            <% if kot.type_kot != nil %>
-              <p id="display-none-smartphone"><%= kot.type_kot %></p>
-            <% end %>
-            <% if kot.nombre_chambres != nil %>
-              <p id="display-none-smartphone">Commu de <%= kot.nombre_chambres %> personnes</p>
-            <% end %>
-          </div>
-        </div>
-        <div class="kot-index-card-right">
-          <p class="nombre-photos"><%= kot.photos.count %></p>
-          <p><i class="fas fa-camera nav-link-index"></i></p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-
-  <% if @kots_indisponibles %>
-    <div class="diviseur-kots">
-      <div class="horizontal-line"></div>
-      <p>Logements qui ne sont plus disponibles</p>
-    </div>
-  <% end %>
-
-  <% if @kots == [] %>
-    <div class="diviseur-kots">
-      <p>Aucun logement ne correspond à vos critères 😢</p>
-    </div>
-  <% end %>
-
-  <% if @kots_indisponibles %>
-    <% @kots_indisponibles.each do |kot| %>
-      <div class="kot-index-card red-card">
-        <%= link_to content_tag(:span), kot_path(kot) %>
-        <div class="kot-index-card-left">
-          <div class="kot-index-card-left-top">
-            <p><%= kot.addresse %></p>
-            <p><%= kot.agence %></p>
-          </div>
-          <div class="kot-index-card-left-bottom">
-            <% if kot.quartier != nil %>
-              <p>Quartier: <%= kot.quartier %></p>
-            <% end %>
-            <% if kot.type_kot != nil %>
-              <p><%= kot.type_kot %></p>
-            <% end %>
-            <% if kot.nombre_chambres != nil %>
-              <p>Commu de <%= kot.nombre_chambres %> personnes</p>
-            <% end %>
-          </div>
-        </div>
-        <div class="kot-index-card-right">
-          <p class="nombre-photos"><%= kot.photos.count %></p>
-          <p><i class="fas fa-camera nav-link-index"></i></p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-  <% if @kots_triés %>
-    <% @kots_triés.each do |kot| %>
-      <% if kot.disponible == false %>
-        <div class="kot-index-card red-card">
-          <%= link_to content_tag(:span), kot_path(kot) %>
-          <div class="kot-index-card-left">
-            <div class="kot-index-card-left-top">
-              <p><%= kot.addresse %></p>
-              <p><%= kot.agence %></p>
-            </div>
-            <div class="kot-index-card-left-bottom">
-              <% if kot.quartier != nil %>
-                <p>Quartier: <%= kot.quartier %></p>
-              <% end %>
-              <% if kot.type_kot != nil %>
-                <p><%= kot.type_kot %></p>
-              <% end %>
-              <% if kot.nombre_chambres != nil %>
-                <p>Commu de <%= kot.nombre_chambres %> personnes</p>
-              <% end %>
-            </div>
-          </div>
-          <div class="kot-index-card-right">
-            <p class="nombre-photos"><%= kot.photos.count %></p>
-            <p><i class="fas fa-camera nav-link-index"></i></p>
-          </div>
-        </div>
-      <% else %>
-        <div class="kot-index-card blue-card">
-          <%= link_to content_tag(:span), kot_path(kot) %>
-          <div class="kot-index-card-left">
-            <div class="kot-index-card-left-top">
-              <p><%= kot.addresse %></p>
-              <p><%= kot.agence %></p>
-            </div>
-            <div class="kot-index-card-left-bottom">
-              <% if kot.quartier != nil %>
-                <p>Quartier: <%= kot.quartier %></p>
-              <% end %>
-              <% if kot.type_kot != nil %>
-                <p><%= kot.type_kot %></p>
-              <% end %>
-              <% if kot.nombre_chambres != nil %>
-                <p>Commu de <%= kot.nombre_chambres %> personnes</p>
-              <% end %>
-            </div>
-          </div>
-          <div class="kot-index-card-right">
-            <p class="nombre-photos"><%= kot.photos.count %></p>
-            <p><i class="fas fa-camera nav-link-index"></i></p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
-  </div>
-</div>
-</div>
 
 
 
@@ -345,207 +260,6 @@
 
 
 
-
-
-
-
-
-
-
-
-<div class="banner">
-  <div class="parent">
-    <% unless user_signed_in? %>
-      <div class="connection-link">
-        <%= link_to "Se connecter", new_user_session_path, class: "" %>
-      </div>
-    <% end %>
-    <div>
-    <img class="logo"src="logo_rond.png" alt="logo kotvid">
-    </div>
-    <div class="banner-titre">
-      <h1>Bienvenue sur KotVid</h1>
-    </div>
-
-    <div class="banner-bouton">
-      <h3>Trouves ton logement étudiant</h3>
-    </div>
-
-    <%# link_to "Ajoute ton kot", new_kot_path, class: 'btn_link btn-ghost' %>
-
-    <div class="searchbar">
-      <form novalidate="novalidate" class="simple_form search" action="/" accept-charset="UTF-8" method="get">
-        <div class="search-index">
-          <div class="search-index-haut">
-            <select placeholder="Quartier" name="search[quartier_search]" id="search_quartier_search">
-                <option value="" disabled selected>Quartier</option>
-                <option value="Biéreau">Biéreau</option>
-                <option value="Lauzelle">Lauzelle</option>
-                <option value="Hocaille">Hocaille</option>
-                <option value="Centre">Centre</option>
-                <option value="Bruyères">Bruyères</option>
-            </select>
-
-            <select placeholder="Type de kot" name="search[type_kot_search]" id="search_type_kot_search">
-                <option value="" disabled selected>Type de logement</option>
-                <option value="Kot UCL">Kot UCL</option>
-                <option value="Kot privé">Kot privé</option>
-                <option value="Appartement">Appartement</option>
-                <option value="Studio">Studio</option>
-            </select>
-            </div>
-            <div class="search-index-milieu">
-              <input placeholder="Adresse complète" type="text" name="search[location_search]" id="search_location_search">
-            </div>
-            <div class="search-index-bas">
-              <input type="submit" name="commit" class="btn-ghost none" value="🔍 Rechercher" data-disable-with="🔍 Rechercher">
-            </div>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-<script>
-console.log(document.getElementById('map'))
-</script>
-
-<div id="map" style="width: 100%; height: 600px;" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
-<div>
-  <%= link_to 'Populer aiglon', aiglon_populer_path %>
-  <%= link_to 'Updater aiglon', aiglon_update_path %>
-  <%# @kots_aiglon.each do |kot| %>
-  <%# kot.addresse %>
-  <%# end %>
-</div>
-
-<div class="kot-index-list">
-  <% if @kots %>
-    <% @kots.each do |kot| %>
-      <div class="kot-index-card blue-card">
-        <%= link_to content_tag(:span), kot_path(kot) %>
-        <div class="kot-index-card-left">
-          <div class="kot-index-card-left-top">
-            <p><%= kot.addresse %></p>
-            <p><%= kot.agence %></p>
-          </div>
-          <div class="kot-index-card-left-bottom">
-            <% if kot.quartier != nil %>
-              <p>Quartier: <%= kot.quartier %></p>
-            <% end %>
-            <% if kot.type_kot != nil %>
-              <p id="display-none-smartphone"><%= kot.type_kot %></p>
-            <% end %>
-            <% if kot.nombre_chambres != nil %>
-              <p id="display-none-smartphone">Commu de <%= kot.nombre_chambres %> personnes</p>
-            <% end %>
-          </div>
-        </div>
-        <div class="kot-index-card-right">
-          <p class="nombre-photos"><%= kot.photos.count %></p>
-          <p><i class="fas fa-camera nav-link-index"></i></p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-
-  <% if @kots_indisponibles %>
-    <div class="diviseur-kots">
-      <div class="horizontal-line"></div>
-      <p>Logements qui ne sont plus disponibles</p>
-    </div>
-  <% end %>
-
-  <% if @kots == [] %>
-    <div class="diviseur-kots">
-      <p>Aucun logement ne correspond à vos critères 😢</p>
-    </div>
-  <% end %>
-
-  <% if @kots_indisponibles %>
-    <% @kots_indisponibles.each do |kot| %>
-      <div class="kot-index-card red-card">
-        <%= link_to content_tag(:span), kot_path(kot) %>
-        <div class="kot-index-card-left">
-          <div class="kot-index-card-left-top">
-            <p><%= kot.addresse %></p>
-            <p><%= kot.agence %></p>
-          </div>
-          <div class="kot-index-card-left-bottom">
-            <% if kot.quartier != nil %>
-              <p>Quartier: <%= kot.quartier %></p>
-            <% end %>
-            <% if kot.type_kot != nil %>
-              <p><%= kot.type_kot %></p>
-            <% end %>
-            <% if kot.nombre_chambres != nil %>
-              <p>Commu de <%= kot.nombre_chambres %> personnes</p>
-            <% end %>
-          </div>
-        </div>
-        <div class="kot-index-card-right">
-          <p class="nombre-photos"><%= kot.photos.count %></p>
-          <p><i class="fas fa-camera nav-link-index"></i></p>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-  <% if @kots_triés %>
-    <% @kots_triés.each do |kot| %>
-      <% if kot.disponible == false %>
-        <div class="kot-index-card red-card">
-          <%= link_to content_tag(:span), kot_path(kot) %>
-          <div class="kot-index-card-left">
-            <div class="kot-index-card-left-top">
-              <p><%= kot.addresse %></p>
-              <p><%= kot.agence %></p>
-            </div>
-            <div class="kot-index-card-left-bottom">
-              <% if kot.quartier != nil %>
-                <p>Quartier: <%= kot.quartier %></p>
-              <% end %>
-              <% if kot.type_kot != nil %>
-                <p><%= kot.type_kot %></p>
-              <% end %>
-              <% if kot.nombre_chambres != nil %>
-                <p>Commu de <%= kot.nombre_chambres %> personnes</p>
-              <% end %>
-            </div>
-          </div>
-          <div class="kot-index-card-right">
-            <p class="nombre-photos"><%= kot.photos.count %></p>
-            <p><i class="fas fa-camera nav-link-index"></i></p>
-          </div>
-        </div>
-      <% else %>
-        <div class="kot-index-card blue-card">
-          <%= link_to content_tag(:span), kot_path(kot) %>
-          <div class="kot-index-card-left">
-            <div class="kot-index-card-left-top">
-              <p><%= kot.addresse %></p>
-              <p><%= kot.agence %></p>
-            </div>
-            <div class="kot-index-card-left-bottom">
-              <% if kot.quartier != nil %>
-                <p>Quartier: <%= kot.quartier %></p>
-              <% end %>
-              <% if kot.type_kot != nil %>
-                <p><%= kot.type_kot %></p>
-              <% end %>
-              <% if kot.nombre_chambres != nil %>
-                <p>Commu de <%= kot.nombre_chambres %> personnes</p>
-              <% end %>
-            </div>
-          </div>
-          <div class="kot-index-card-right">
-            <p class="nombre-photos"><%= kot.photos.count %></p>
-            <p><i class="fas fa-camera nav-link-index"></i></p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  <% end %>
-</div>
 
 
 <div class="footer">
@@ -560,7 +274,7 @@ console.log(document.getElementById('map'))
 </div>
 
 
-<script>
+<!-- <script>
 var lowerSlider = document.querySelector('#lower'),
    upperSlider = document.querySelector('#upper'),
    lowerVal = parseInt(lowerSlider.value);
@@ -619,3 +333,4 @@ lowerSlider.oninput = function() {
 </script>
 
 
+ -->
