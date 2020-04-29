@@ -21,10 +21,11 @@ class KotsController < ApplicationController
       @kots_geocoded = @kots_geocoded.where("? <= price", params[:search][:price_low]) if params[:search][:price_low].present?
       @kots_geocoded = @kots_geocoded.where("price <= ?", params[:search][:price_high]) if params[:search][:price_high].present?
     end
-    @markers = @kots_geocoded.map do |flat|
+    @markers = @kots_geocoded.map do |kot|
       {
-        lat: flat.latitude,
-        lng: flat.longitude
+        lat: kot.latitude,
+        lng: kot.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { kot: kot })
       }
     end
   end

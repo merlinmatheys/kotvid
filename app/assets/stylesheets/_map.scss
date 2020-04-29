@@ -1,0 +1,18 @@
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  padding: 0px !important;
+  border-radius: 7px !important;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#card-infos-map {
+  border-radius: 7px;
+}
