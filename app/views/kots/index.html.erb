@@ -578,14 +578,36 @@ upperSlider.oninput = function() {
       }
    }
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> dda9854fdee1e45c076a9bcdf9fe4807dd48725a
 
+lowerSlider.oninput = function() {
+   lowerVal = parseInt(lowerSlider.value);
+   upperVal = parseInt(upperSlider.value);
+
+<<<<<<< HEAD
+   if (lowerVal > upperVal - 4) {
+      upperSlider.value = lowerVal + 4;
+=======
 lowerSlider.oninput = function() {
    lowerVal = parseInt(lowerSlider.value);
    upperVal = parseInt(upperSlider.value);
 
    if (lowerVal > upperVal - 4) {
       upperSlider.value = lowerVal + 4;
+
+      if (upperVal == upperSlider.max) {
+         lowerSlider.value = parseInt(upperSlider.max) - 4;
+      }
+
+   }
+};
+
+</script>
+
+>>>>>>> dda9854fdee1e45c076a9bcdf9fe4807dd48725a
 
       if (upperVal == upperSlider.max) {
          lowerSlider.value = parseInt(upperSlider.max) - 4;
