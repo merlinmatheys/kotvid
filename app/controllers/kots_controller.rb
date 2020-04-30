@@ -1,4 +1,8 @@
 class KotsController < ApplicationController
+require 'will_paginate/array'
+require 'will_paginate'
+require 'will_paginate/active_record'
+
   # before_action :authenticate_user!, only: [:new, :create]
   def index
     if params[:search].present?
@@ -11,7 +15,11 @@ class KotsController < ApplicationController
     else
       @kots = Kot.where(disponible: true) && Kot.where(disponible: nil)
       @kots = @kots.all.sort_by { |all_kots| all_kots[:addresse] }
-      @kots_indisponibles = Kot.where(disponible: false)
+      kots_indisponibles = Kot.where(disponible: false)
+      kots_indisponibles.each do |kot|
+        @kots << kot
+      end
+      @kots = @kots.paginate(page: params[:page], per_page: 2)
     end
     @kots_geocoded = Kot.geocoded # returns flats with coordinates
     @kots_geocoded = @kots_geocoded.where(disponible: true) && Kot.where(disponible: nil)
