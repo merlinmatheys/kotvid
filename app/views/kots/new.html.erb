@@ -16,26 +16,23 @@
           <label class="string optional" for="kot_quartier_">Quartier</label>
         </div>
         <div class="field">
-          <input list="quartiers" class="connection-input" type="text" name="kot[quartier]" id="kot_quartier">
-          <datalist id="quartiers">
-            <option value="Biéreau">
-            </option><option value="Lauzelle">
-            </option><option value="Hocaille">
-            </option><option value="Centre">
-            </option><option value="Bruyères">
-          </option></datalist>
+          <select type="text" name="kot[quartier]" id="kot_quartier" class="connection-input">
+            <option value="Biéreau">Biéreau</option>
+            <option value="Lauzelle">Lauzelle</option>
+            <option value="Hocaille">Hocaille</option>
+            <option value="Centre">Centre</option>
+            <option value="Bruyères">Bruyères</option>
+          </select>
         </div>
         <div class="label">
           <label class="string optional" for="kot_type_kot">Type de logement</label>
         </div>
         <div class="field">
-          <input list="types" class="connection-input" type="text" name="kot[type_kot]" id="kot_type_kot">
-          <datalist id="types">
-            <option value="Kot UCL">
-            </option><option value="Kot privé">
-            </option><option value="Studio">
-            </option><option value="Appartement">
-          </option></datalist>
+          <select class="connection-input" type="text" name="kot[type_kot]" id="kot_type_kot">
+            <option value="Kot">Kot / Coloc</option>
+            <option value="Studio">Studio</option>
+            <option value="Appartement">Appartement</option>
+          </select>
         </div>
         <div class="label">
           <label class="integer optional" for="kot_nombre_chambres">Nombre de personnes dans la colocation</label>
@@ -59,19 +56,19 @@
           <label class="string optional" for="kot_propriétaire">Propriétaire</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="text" name="kot[agence]" id="kot_agence">
+          <input class="connection-input" type="text" name="kot[agence]" id="kot_agence" value="<%= current_user.name %>">
         </div>
         <div class="label">
           <label class="string optional" for="kot_email">Email</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="text" name="kot[email]" id="kot_email">
+          <input class="connection-input" type="text" name="kot[email]" id="kot_email" value="<%= current_user.email %>">
         </div>
         <div class="label">
           <label class="string optional" for="kot_phone">Téléphonne</label>
         </div>
         <div class="field">
-          <input class="connection-input" type="text" name="kot[phone]" id="kot_phone">
+          <input class="connection-input" type="text" name="kot[phone]" id="kot_phone" value="<%= current_user.phone %>">
         </div>
 
         <!-- <legend class="col-form-label pt-0">Disponible</legend>
