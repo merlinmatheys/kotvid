@@ -24,6 +24,9 @@ gem 'turbolinks', '~> 5'
 
 gem 'cloudinary', '~> 1.12.0'
 
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate_infinite'
+
 
 gem 'watir', '~> 6.16', '>= 6.16.5'
 

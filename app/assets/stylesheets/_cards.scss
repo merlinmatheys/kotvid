@@ -36,6 +36,15 @@
   border-radius: 5px 5px 0 0;
 }
 
+#indisponible {
+  background-color: rgba(255, 137, 137, 0.6);
+  transition: background 0.5s ease;
+}
+
+#indisponible:hover {
+  background-color: rgba(255, 137, 137, 0.9);
+}
+
 .card-infos {
   position: relative;
   width: 100%;
@@ -51,15 +60,6 @@
 
 .card-infos:hover {
   background-color: rgb(117, 193, 255);
-}
-
-.card-infos-indisponibles {
-  background-color: rgba(255, 137, 137, 0.6);
-  transition: background 0.5s ease;
-}
-
-.card-infos-indisponibles:hover {
-  background-color: rgba(255, 137, 137, 0.9);
 }
 
 .card-infos span {
@@ -85,6 +85,23 @@
       border-radius: 0 3px 3px 0;
       p {
         font-size: 20px;
+      }
+    }
+    .prix-haut {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      div {
+        width: 37%;
+        text-align: right;
+        background-color: white;
+        padding: 2px;
+        margin-top: 5px;
+        border-radius: 3px 0 0 3px;
+        p {
+          font-size: 20px;
+        }
       }
     }
   }

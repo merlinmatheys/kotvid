@@ -81,57 +81,40 @@
           data-markers="<%= @markers.to_json %>"
           data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
-
-  <div class="card-container">
-    <% if @kots %>
-      <% @kots.each_with_index do |kot, index| %>
-        <div class="card">
-          <div class="card-pictures" id="<%= index %>" data-index="1">
-            <div class="slideshow-container">
-                <% kot.photos.each_with_index do |photo, index| %>
-                  <div class="mySlides" id="slides" style="background-image: url('<%= cl_image_path photo.key %>')">
-                    <div class="prix">
-                      <div></div>
-                      <div class="prix-bas">
-                        <p><%= kot.price %> €</p>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-              <a class="prev" onclick="showSlides(-1, <%= index %>)">&#10094;</a>
-              <a class="next" onclick="showSlides(1, <%= index %>)">&#10095;</a>
-            </div>
-          </div>
-          <div class="card-infos">
-            <%= link_to content_tag(:span), kot_path(kot) %>
-            <p><%= kot.addresse %></p>
-            <p><%= kot.type_kot %> ○ <%= kot.quartier %> ○ <%= kot.recovery_date %></p>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="card-container">
-    <% if @kots_indisponibles %>
-        <% @kots_indisponibles.each_with_index do |kot, index| %>
+  <div id="infinite-list">
+    <div class="card-container">
+      <% if @kots %>
+        <% @kots.each_with_index do |kot, index| %>
           <div class="card">
-            <div class="card-pictures-indisponibles" id="<%= index + 10000 %>" data-index="1">
+            <div class="card-pictures" id="<%= index %>" data-index="1">
               <div class="slideshow-container">
+
                   <% kot.photos.each_with_index do |photo, index| %>
                     <div class="mySlides" id="slides" style="background-image: url('<%= cl_image_path photo.key %>')">
                       <div class="prix">
+                        <% if kot.disponible == false %>
+                          <div class="prix-haut">
+                            <div><p>Indisponible  </p></div>
+                          </div>
+                        <% else %>
                         <div></div>
-                        <div class="prix-bas">
-                          <p><%= kot.price %> €</p>
-                        </div>
+                        <% end %>
+                          <div class="prix-bas">
+                            <p><%= kot.price %> €</p>
+                          </div>
                       </div>
                     </div>
                   <% end %>
-                <a class="prev" onclick="showSlides(-1, <%= index + 10000 %>)">&#10094;</a>
-                <a class="next" onclick="showSlides(1, <%= index + 10000 %>)">&#10095;</a>
+
+                <a class="prev" onclick="showSlides(-1, <%= index %>)">&#10094;</a>
+                <a class="next" onclick="showSlides(1, <%= index %>)">&#10095;</a>
               </div>
             </div>
-            <div class="card-infos card-infos-indisponibles">
+            <% if kot.disponible == false %>
+            <div class="card-infos" id="indisponible">
+            <% else %>
+            <div class="card-infos">
+            <% end %>
               <%= link_to content_tag(:span), kot_path(kot) %>
               <p><%= kot.addresse %></p>
               <p><%= kot.type_kot %> ○ <%= kot.quartier %> ○ <%= kot.recovery_date %></p>
@@ -139,7 +122,11 @@
           </div>
         <% end %>
       <% end %>
+    </div>
+    <%= will_paginate @kots %>
+
   </div>
+
 
   <% if @kots == [] %>
     <div class="diviseur-kots">
@@ -212,6 +199,9 @@
       filters.style.display = "block"
     }
   }
+
+
+
 </script>
 
 <div class="footer">
