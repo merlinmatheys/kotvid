@@ -53,6 +53,16 @@
   var slideIndex = 1;
   showSlides(slideIndex);
 
+  document.addEventListener("keyup", event => {
+    if (event.keyCode === 39) {
+      plusSlides(1)
+    } else if (event.keyCode === 37) {
+      plusSlides(-1)
+    } else {
+      return;
+    }
+  });
+
   // Next/previous controls
   function plusSlides(n) {
     showSlides(slideIndex += n);
